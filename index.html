@@ -22,6 +22,9 @@
       --text-muted:   #8b9ab1;
       --card-bg:      #1e2535;
       --border:       rgba(255,255,255,0.07);
+      --fc-color-primary: var(--green);
+      --fc-color-bg: var(--bg);
+      --fc-font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -498,6 +501,40 @@
       border: 1px solid rgba(245,158,11,0.25);
     }
 
+    /* ─── DEPOIMENTOS ────────────────────────────────────────────────── */
+    #depoimentos {
+      background: var(--bg2);
+    }
+    .fc-testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.4rem;
+    }
+    .fc-testimonial-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.5rem;
+    }
+    .fc-testimonial-photo {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(16,185,129,0.35);
+      margin-bottom: 1rem;
+    }
+    .fc-testimonial-card h3 {
+      font-size: 1.02rem;
+      margin-bottom: 0.7rem;
+      line-height: 1.3;
+    }
+    .fc-testimonial-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
     /* ─── PATROCINADOR — BOA FARMA ───────────────────────────────────── */
     .sponsor-section {
       padding: 4.5rem 2rem;
@@ -642,6 +679,11 @@
       .sponsor-highlight { text-align: left; }
       .modalities-grid { grid-template-columns: 1fr; }
     }
+    @media (min-width: 768px) {
+      .fc-testimonials-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
   </style>
 </head>
 <body>
@@ -654,6 +696,7 @@
     <nav aria-label="Navegação principal">
       <a href="#beneficios">Benefícios</a>
       <a href="#modalidades">Modalidades</a>
+      <a href="#depoimentos">Depoimentos</a>
       <a href="#patrocinador">Parceiro</a>
       <a href="#modalidades" class="nav-cta">Matricule-se</a>
     </nav>
@@ -901,6 +944,34 @@
           </div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       DEPOIMENTOS
+  ═══════════════════════════════════════════════════════ -->
+  <section id="depoimentos" aria-labelledby="titulo-depoimentos">
+    <div class="container">
+      <p class="section-label">Quem treina aprova</p>
+      <h2 id="titulo-depoimentos" class="section-title">Depoimentos de alunos</h2>
+      <p class="section-sub">Resultados reais de quem evoluiu com constância, orientação e acompanhamento na Academia FitCode.</p>
+      <div class="fc-testimonials-grid">
+        <article class="fc-testimonial-card">
+          <img class="fc-testimonial-photo" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=160&h=160&q=80" alt="Aluno da Academia FitCode sorrindo após treino de musculação" width="72" height="72" loading="lazy">
+          <h3>Lucas Andrade</h3>
+          <p>“Em três meses ganhei condicionamento, perdi gordura e voltei a ter energia no dia a dia. O suporte dos professores fez toda diferença.”</p>
+        </article>
+        <article class="fc-testimonial-card">
+          <img class="fc-testimonial-photo" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=160&h=160&q=80" alt="Aluna da Academia FitCode durante rotina de treinos funcionais" width="72" height="72" loading="lazy">
+          <h3>Mariana Costa</h3>
+          <p>“Comecei insegura e hoje treino com confiança. As aulas são motivadoras e o ambiente da FitCode me ajudou a manter constância.”</p>
+        </article>
+        <article class="fc-testimonial-card">
+          <img class="fc-testimonial-photo" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&h=160&q=80" alt="Aluno da Academia FitCode celebrando evolução após aulas de natação" width="72" height="72" loading="lazy">
+          <h3>Rafael Nunes</h3>
+          <p>“A combinação entre musculação e natação melhorou minha postura e resistência. Hoje tenho mais disposição para trabalho e família.”</p>
+        </article>
       </div>
     </div>
   </section>

@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Academia FitCode — descubra os benefícios do esporte e escolha sua modalidade. Musculação, Natação, Yoga, CrossFit, Corrida e Artes Marciais.">
+  <meta property="og:image" content="https://edymonte.github.io/site-academia/og-image.jpg">
+  <meta property="og:title" content="Academia FitCode — Transforme Seu Corpo, Liberte Sua Mente">
+  <meta property="og:description" content="Academia FitCode — descubra os benefícios do esporte e escolha sua modalidade.">
   <title>Academia FitCode — Transforme Seu Corpo, Liberte Sua Mente</title>
   <style>
     /* ─── Variáveis & Reset ─────────────────────────────────────────────── */
@@ -648,7 +651,7 @@
   ═══════════════════════════════════════════════════════ -->
   <header>
     <div class="logo">Fit<span>Code</span></div>
-    <nav>
+    <nav aria-label="Navegação principal">
       <a href="#beneficios">Benefícios</a>
       <a href="#modalidades">Modalidades</a>
       <a href="#patrocinador">Parceiro</a>
@@ -656,10 +659,12 @@
     </nav>
   </header>
 
+  <main id="conteudo-principal">
+
   <!-- ═══════════════════════════════════════════════════════
        HERO — PISCINA COM NADADOR
   ═══════════════════════════════════════════════════════ -->
-  <section id="hero">
+  <section id="hero" aria-labelledby="titulo-hero">
 
     <!-- Camadas da piscina -->
     <div class="pool"></div>
@@ -754,7 +759,7 @@
     <!-- Conteúdo sobreposto -->
     <div class="hero-content">
       <div class="hero-badge">&#9679; Transformação Real</div>
-      <h1>Seu corpo é capaz de<br><em>muito mais</em> do que<br>você imagina</h1>
+      <h1 id="titulo-hero">Seu corpo é capaz de<br><em>muito mais</em> do que<br>você imagina</h1>
       <p>Ciência e movimento unidos para transformar sua saúde, sua mente e sua vida.
          Descubra como praticar esporte muda tudo — de dentro para fora.</p>
       <div class="hero-btns">
@@ -773,10 +778,10 @@
   <!-- ═══════════════════════════════════════════════════════
        BENEFÍCIOS
   ═══════════════════════════════════════════════════════ -->
-  <section id="beneficios">
+  <section id="beneficios" aria-labelledby="titulo-beneficios">
     <div class="container">
       <p class="section-label">Por que se exercitar</p>
-      <h2 class="section-title">Benefícios comprovados<br>pela ciência</h2>
+      <h2 id="titulo-beneficios" class="section-title">Benefícios comprovados<br>pela ciência</h2>
       <p class="section-sub">
         Praticar esporte regularmente é a decisão mais impactante que você pode tomar
         pela sua saúde — física e mental.
@@ -826,10 +831,10 @@
   <!-- ═══════════════════════════════════════════════════════
        MODALIDADES
   ═══════════════════════════════════════════════════════ -->
-  <section id="modalidades">
+  <section id="modalidades" aria-labelledby="titulo-modalidades">
     <div class="container">
       <p class="section-label">O que oferecemos</p>
-      <h2 class="section-title">Escolha sua<br>modalidade</h2>
+      <h2 id="titulo-modalidades" class="section-title">Escolha sua<br>modalidade</h2>
       <p class="section-sub">
         Seis modalidades, um objetivo: encontrar o movimento que vai mudar
         a sua vida e que você vai amar praticar todo dia.
@@ -903,7 +908,7 @@
   <!-- ═══════════════════════════════════════════════════════
        PATROCINADOR — BOA FARMA
   ═══════════════════════════════════════════════════════ -->
-  <div id="patrocinador" class="sponsor-section">
+  <section id="patrocinador" class="sponsor-section" aria-label="Patrocinador Oficial — Boa Farma">
     <div class="sponsor-inner">
 
       <div class="sponsor-left">
@@ -931,7 +936,9 @@
       </div>
 
     </div>
-  </div>
+  </section>
+
+  </main>
 
   <!-- ═══════════════════════════════════════════════════════
        FOOTER

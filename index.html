@@ -498,6 +498,51 @@
       border: 1px solid rgba(245,158,11,0.25);
     }
 
+    /* ─── DEPOIMENTOS ───────────────────────────────────────────────── */
+    #depoimentos { background: var(--bg2); }
+    .fc-depoimentos-grid {
+      list-style: none;
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: 1fr;
+    }
+    .fc-depoimento-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+    .fc-depoimento-aluno {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+    .fc-depoimento-foto {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(16,185,129,0.45);
+      flex-shrink: 0;
+    }
+    .fc-depoimento-nome {
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+      line-height: 1.2;
+    }
+    .fc-depoimento-modalidade {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    .fc-depoimento-texto {
+      color: rgba(240,246,252,0.86);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
     /* ─── PATROCINADOR — BOA FARMA ───────────────────────────────────── */
     .sponsor-section {
       padding: 4.5rem 2rem;
@@ -642,6 +687,12 @@
       .sponsor-highlight { text-align: left; }
       .modalities-grid { grid-template-columns: 1fr; }
     }
+    @media (min-width: 700px) {
+      .fc-depoimentos-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (min-width: 980px) {
+      .fc-depoimentos-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
   </style>
 </head>
 <body>
@@ -654,6 +705,7 @@
     <nav aria-label="Navegação principal">
       <a href="#beneficios">Benefícios</a>
       <a href="#modalidades">Modalidades</a>
+      <a href="#depoimentos">Depoimentos</a>
       <a href="#patrocinador">Parceiro</a>
       <a href="#modalidades" class="nav-cta">Matricule-se</a>
     </nav>
@@ -902,6 +954,88 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       DEPOIMENTOS
+  ═══════════════════════════════════════════════════════ -->
+  <section id="depoimentos" aria-labelledby="titulo-depoimentos">
+    <div class="container">
+      <p class="section-label">Resultados reais</p>
+      <h2 id="titulo-depoimentos" class="section-title">Depoimentos de alunos</h2>
+      <p class="section-sub">
+        Histórias de quem encontrou constância, energia e confiança com a rotina
+        de treinos da Academia FitCode.
+      </p>
+
+      <ul class="fc-depoimentos-grid">
+        <li>
+          <article class="fc-depoimento-card">
+            <figure class="fc-depoimento-aluno">
+              <img
+                class="fc-depoimento-foto"
+                src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=240&q=80"
+                alt="Aluna sorrindo após treino funcional na academia"
+                width="72"
+                height="72"
+                loading="lazy">
+              <figcaption>
+                <h3 class="fc-depoimento-nome">Mariana Costa</h3>
+                <p class="fc-depoimento-modalidade">Treino Funcional</p>
+              </figcaption>
+            </figure>
+            <p class="fc-depoimento-texto">
+              “Em três meses ganhei fôlego, perdi medidas e voltei a dormir bem.
+              A equipe acompanha cada evolução de perto.”
+            </p>
+          </article>
+        </li>
+
+        <li>
+          <article class="fc-depoimento-card">
+            <figure class="fc-depoimento-aluno">
+              <img
+                class="fc-depoimento-foto"
+                src="https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&w=240&q=80"
+                alt="Aluno comemorando resultado de treino de musculação"
+                width="72"
+                height="72"
+                loading="lazy">
+              <figcaption>
+                <h3 class="fc-depoimento-nome">Rafael Mendes</h3>
+                <p class="fc-depoimento-modalidade">Musculação</p>
+              </figcaption>
+            </figure>
+            <p class="fc-depoimento-texto">
+              “Saí do sedentarismo para treinar quatro vezes por semana. Hoje me
+              sinto mais forte e com muito mais disposição no trabalho.”
+            </p>
+          </article>
+        </li>
+
+        <li>
+          <article class="fc-depoimento-card">
+            <figure class="fc-depoimento-aluno">
+              <img
+                class="fc-depoimento-foto"
+                src="https://images.unsplash.com/photo-1541532713592-79a0317b6b77?auto=format&fit=crop&w=240&q=80"
+                alt="Aluna na área de cardio após aula de corrida orientada"
+                width="72"
+                height="72"
+                loading="lazy">
+              <figcaption>
+                <h3 class="fc-depoimento-nome">Juliana Alves</h3>
+                <p class="fc-depoimento-modalidade">Corrida Orientada</p>
+              </figcaption>
+            </figure>
+            <p class="fc-depoimento-texto">
+              “Nunca gostei de academia, mas aqui encontrei um plano que combina
+              comigo. Completei minha primeira prova de 5 km.”
+            </p>
+          </article>
+        </li>
+      </ul>
     </div>
   </section>
 

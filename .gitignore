@@ -1,0 +1,11 @@
+# Evidências geradas localmente — não publicar no GitHub Pages
+evidencias/turma-*.html
+
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env

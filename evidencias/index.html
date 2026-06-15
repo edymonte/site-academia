@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard de Evidências — Workshop Copilot · Fase 2</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+          background:#eef2f7;min-height:100vh;padding:2rem 1rem}
+    .container{max-width:960px;margin:0 auto}
+    .hd{background:linear-gradient(135deg,#0d1117 0%,#161b22 60%,#1a2d1a 100%);
+         color:#fff;border-radius:16px 16px 0 0;padding:2rem 2.5rem 1.5rem}
+    .brand{font-size:.7rem;font-weight:700;letter-spacing:.18em;
+            text-transform:uppercase;color:#3fb950;margin-bottom:.5rem}
+    .hd-titulo{font-size:1.6rem;font-weight:800;margin-bottom:.3rem}
+    .hd-sub{font-size:.85rem;color:rgba(255,255,255,.45)}
+    .stats-bar{background:#161b22;padding:1.2rem 2.5rem;
+                display:flex;gap:2.5rem;flex-wrap:wrap;
+                border-bottom:1px solid rgba(255,255,255,.08)}
+    .stat{display:flex;flex-direction:column;gap:.2rem}
+    .stat-val{font-size:1.6rem;font-weight:800;color:#fff}
+    .stat-val.green{color:#3fb950}
+    .stat-val.orange{color:#f59e0b}
+    .stat-label{font-size:.72rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.1em}
+    .pct-bar{margin-top:.4rem;height:4px;width:80px;background:rgba(255,255,255,.1);border-radius:2px}
+    .pct-fill{height:100%;border-radius:2px;background:#2da44e;width:0%}
+    .body{background:#fff;padding:2rem 2.5rem;border-radius:0 0 16px 16px}
+    h3{font-size:1rem;font-weight:700;color:#24292f;margin-bottom:1rem;
+        padding-bottom:.5rem;border-bottom:1px solid #e8e8e8}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+             gap:1rem;margin-bottom:2rem}
+    .tcard{border:1px solid #e8e8e8;border-radius:10px;padding:1rem 1.2rem}
+    .tcard-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem}
+    .tcard-label{font-weight:700;font-size:.95rem;color:#24292f}
+    .tcard-branch{font-family:monospace;font-size:.78rem;color:#57606a;margin-bottom:.6rem}
+    .partic-list{display:flex;flex-direction:column;gap:.3rem}
+    .partic{display:flex;align-items:center;gap:.5rem;font-size:.82rem}
+    .partic a{color:#0969da;text-decoration:none;flex:1}
+    .partic a:hover{text-decoration:underline}
+    .p-ok .p-icon{color:#2da44e;font-weight:700}
+    .p-pend .p-icon{color:#cf222e;font-weight:700}
+    .p-ts{font-size:.72rem;color:#aaa;white-space:nowrap}
+    .partic-none{font-size:.8rem;color:#aaa;font-style:italic}
+    .badge{font-size:.72rem;font-weight:700;padding:.2rem .65rem;border-radius:100px}
+    .badge-ok{background:#e6ffed;color:#1a7f37}
+    .badge-pend{background:#fff8e1;color:#b45309}
+    .badge-none{background:#f6f8fa;color:#888}
+    table{width:100%;border-collapse:collapse;font-size:.85rem}
+    th{text-align:left;padding:.6rem .5rem;border-bottom:2px solid #e8e8e8;
+        font-size:.75rem;color:#57606a;text-transform:uppercase;letter-spacing:.05em}
+    td{padding:.65rem .5rem;border-bottom:1px solid #f0f0f0;vertical-align:middle}
+    tr:last-child td{border-bottom:none}
+    code{font-size:.78rem;background:#f6f8fa;padding:.15rem .4rem;border-radius:4px}
+    a{color:#0969da;text-decoration:none}
+    .footer{text-align:center;font-size:.75rem;color:#aaa;margin-top:1.5rem}
+    .empty-state{text-align:center;padding:2rem;color:#aaa;font-size:.9rem}
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="hd">
+    <div class="brand">Academia FitCode · Workshop GitHub Copilot</div>
+    <div class="hd-titulo">Dashboard de Evidências — Fase 2</div>
+    <div class="hd-sub">Gerado pelo script <code style="color:rgba(255,255,255,.6)">setup/gerar_evidencia.py</code> · atualizado pelo <code style="color:rgba(255,255,255,.6)">setup/gerar_index.py</code></div>
+  </div>
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-val" id="total-turmas">0</div>
+      <div class="stat-label">Turmas</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val green" id="total-aprovados">0</div>
+      <div class="stat-label">Aprovados</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val orange" id="total-pendentes">0</div>
+      <div class="stat-label">Pendentes</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val green" id="pct-aprovacao">—</div>
+      <div class="stat-label">Aprovação</div>
+      <div class="pct-bar"><div class="pct-fill" id="pct-fill"></div></div>
+    </div>
+  </div>
+  <div class="body">
+    <h3>Situação por Time</h3>
+    <div class="cards">
+      <div class="tcard">
+        <div class="tcard-top">
+          <div class="tcard-label">Time Front-End</div>
+          <span class="badge badge-none" id="badge-front">Aguardando</span>
+        </div>
+        <div class="tcard-branch">feature/front</div>
+        <div class="partic-list" id="list-front">
+          <div class="partic-none">Nenhuma evidência gerada</div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-top">
+          <div class="tcard-label">Time Conteúdo</div>
+          <span class="badge badge-none" id="badge-conteudo">Aguardando</span>
+        </div>
+        <div class="tcard-branch">feature/conteudo</div>
+        <div class="partic-list" id="list-conteudo">
+          <div class="partic-none">Nenhuma evidência gerada</div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-top">
+          <div class="tcard-label">Time DevOps</div>
+          <span class="badge badge-none" id="badge-devops">Aguardando</span>
+        </div>
+        <div class="tcard-branch">feature/devops</div>
+        <div class="partic-list" id="list-devops">
+          <div class="partic-none">Nenhuma evidência gerada</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Histórico de Evidências</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Participante</th>
+          <th>Time</th>
+          <th>Branch</th>
+          <th>Status</th>
+          <th>Gerado em</th>
+          <th>Código</th>
+          <th>Evidência</th>
+        </tr>
+      </thead>
+      <tbody id="historico-body">
+        <tr>
+          <td colspan="7" class="empty-state">
+            Nenhuma evidência ainda. Execute:<br>
+            <code>python setup/gerar_evidencia.py --nome "Seu Nome" --turma front</code>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="footer">Site Academia FitCode · GitHub Copilot Workshop Fase 2</div>
+</div>
+
+<script>
+/**
+ * Este dashboard lê os metadados JSON embutidos em cada arquivo de evidência
+ * na mesma pasta. Execute setup/gerar_index.py para regenerar com dados reais.
+ *
+ * Para uso offline, os dados são injetados pelo gerar_index.py diretamente
+ * neste arquivo via substituição de EVIDENCIAS_DATA abaixo.
+ */
+const EVIDENCIAS_DATA = [];
+
+(function () {
+  if (!EVIDENCIAS_DATA || EVIDENCIAS_DATA.length === 0) return;
+
+  const timeLists = {
+    front: document.getElementById('list-front'),
+    conteudo: document.getElementById('list-conteudo'),
+    devops: document.getElementById('list-devops'),
+  };
+  const timeBadges = {
+    front: document.getElementById('badge-front'),
+    conteudo: document.getElementById('badge-conteudo'),
+    devops: document.getElementById('badge-devops'),
+  };
+  const timeCount = { front: 0, devops: 0, conteudo: 0 };
+  const timeAprov = { front: 0, devops: 0, conteudo: 0 };
+
+  let totalAprov = 0;
+  const tbody = document.getElementById('historico-body');
+  tbody.innerHTML = '';
+
+  EVIDENCIAS_DATA.forEach(ev => {
+    const turma = ev.turma || 'front';
+    const ok = ev.aprovado;
+
+    // Card de time
+    const list = timeLists[turma];
+    if (list) {
+      if (list.querySelector('.partic-none')) list.innerHTML = '';
+      const div = document.createElement('div');
+      div.className = `partic ${ok ? 'p-ok' : 'p-pend'}`;
+      const ts = ev.timestamp
+        ? ev.timestamp.replace(/(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})/, '$3/$2/$1 $4:$5')
+        : '';
+      div.innerHTML = `<span class="p-icon">${ok ? '✔' : '✘'}</span><a href="${ev.arquivo}" target="_blank">${ev.nome}</a><span class="p-ts">${ts}</span>`;
+      list.appendChild(div);
+    }
+
+    timeCount[turma] = (timeCount[turma] || 0) + 1;
+    if (ok) { timeAprov[turma] = (timeAprov[turma] || 0) + 1; totalAprov++; }
+
+    // Linha do histórico
+    const tr = document.createElement('tr');
+    const badgeCls = ok ? 'badge-ok' : 'badge-pend';
+    const badgeTxt = ok ? 'Aprovado' : 'Pendente';
+    const ts = ev.timestamp
+      ? ev.timestamp.replace(/(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})/, '$3/$2/$1 $4:$5')
+      : '—';
+    tr.innerHTML = `
+      <td>${ev.nome}</td>
+      <td>Time ${turma.charAt(0).toUpperCase() + turma.slice(1)}</td>
+      <td><code>${ev.branch || '—'}</code></td>
+      <td><span class="badge ${badgeCls}">${badgeTxt}</span></td>
+      <td>${ts}</td>
+      <td><code>${ev.codigo || '—'}</code></td>
+      <td><a href="${ev.arquivo}" target="_blank">↗ abrir</a></td>`;
+    tbody.appendChild(tr);
+  });
+
+  // Atualiza badges dos times
+  Object.keys(timeBadges).forEach(t => {
+    const badge = timeBadges[t];
+    if (!badge) return;
+    const c = timeCount[t] || 0;
+    const a = timeAprov[t] || 0;
+    if (c === 0) return;
+    badge.textContent = `${a}/${c} aprovados`;
+    badge.className = `badge ${a === c ? 'badge-ok' : 'badge-pend'}`;
+  });
+
+  // Stats bar
+  const total = EVIDENCIAS_DATA.length;
+  const pend = total - totalAprov;
+  const pct = total > 0 ? Math.round(totalAprov / total * 100) : 0;
+  const turmasAtivas = Object.values(timeCount).filter(v => v > 0).length;
+
+  document.getElementById('total-turmas').textContent = turmasAtivas;
+  document.getElementById('total-aprovados').textContent = totalAprov;
+  document.getElementById('total-pendentes').textContent = pend;
+  document.getElementById('pct-aprovacao').textContent = pct + '%';
+  document.getElementById('pct-fill').style.width = pct + '%';
+  if (pct < 100) {
+    document.getElementById('pct-aprovacao').style.color = '#f59e0b';
+    document.getElementById('pct-fill').style.background = '#f59e0b';
+  }
+})();
+</script>
+</body>
+</html>

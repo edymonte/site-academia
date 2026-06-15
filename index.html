@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Academia FitCode — descubra os benefícios do esporte e escolha sua modalidade. Musculação, Natação, Yoga, CrossFit, Corrida e Artes Marciais.">
+  <title>Academia FitCode — Transforme Seu Corpo, Liberte Sua Mente</title>
+  <style>
+    /* ─── Variáveis & Reset ─────────────────────────────────────────────── */
+    :root {
+      --bg:           #0d1117;
+      --bg2:          #161b27;
+      --bg3:          #1a2035;
+      --green:        #10b981;
+      --green-dark:   #059669;
+      --green-glow:   rgba(16,185,129,0.35);
+      --amber:        #f59e0b;
+      --text:         #f0f6fc;
+      --text-muted:   #8b9ab1;
+      --card-bg:      #1e2535;
+      --border:       rgba(255,255,255,0.07);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── HEADER ────────────────────────────────────────────────────────── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      background: rgba(13,17,23,0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.9rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--green);
+      letter-spacing: -0.03em;
+    }
+    .logo span { color: var(--text); }
+    nav { display: flex; align-items: center; gap: 0.25rem; }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.4rem 0.9rem;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+    }
+    nav a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
+    .nav-cta {
+      background: var(--green) !important;
+      color: #fff !important;
+      font-weight: 700 !important;
+      margin-left: 0.5rem;
+    }
+    .nav-cta:hover { background: var(--green-dark) !important; }
+
+    /* ─── HERO — PISCINA REALISTA ────────────────────────────────────────── */
+    #hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 640px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Corpo d'água — gradiente de profundidade */
+    .pool {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        #012a3d 0%,
+        #013f5c 10%,
+        #015c87 25%,
+        #0077aa 42%,
+        #009fcc 60%,
+        #00c2e0 76%,
+        #6dd9ef 92%,
+        #aeecf7 100%
+      );
+    }
+
+    /* Efeito cáustico — reflexo de luz oscilando no fundo */
+    .pool-caustics {
+      position: absolute;
+      inset: 0;
+      animation: caustics-move 5s ease-in-out infinite alternate;
+      background:
+        radial-gradient(ellipse 100px 55px at 18% 38%, rgba(255,255,255,0.20) 0%, transparent 65%),
+        radial-gradient(ellipse 70px 35px at 48% 62%, rgba(255,255,255,0.15) 0%, transparent 65%),
+        radial-gradient(ellipse 120px 60px at 72% 30%, rgba(255,255,255,0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 55px 28px at 33% 78%, rgba(255,255,255,0.12) 0%, transparent 65%),
+        radial-gradient(ellipse 85px 42px at 85% 65%, rgba(255,255,255,0.16) 0%, transparent 65%),
+        radial-gradient(ellipse 65px 32px at 60% 50%, rgba(255,255,255,0.10) 0%, transparent 65%);
+    }
+    .pool-caustics-2 {
+      position: absolute;
+      inset: 0;
+      animation: caustics-move-2 7s ease-in-out infinite alternate;
+      background:
+        radial-gradient(ellipse 75px 38px at 8%  58%, rgba(255,255,255,0.16) 0%, transparent 65%),
+        radial-gradient(ellipse 50px 25px at 40% 40%, rgba(255,255,255,0.11) 0%, transparent 65%),
+        radial-gradient(ellipse 90px 46px at 78% 72%, rgba(255,255,255,0.19) 0%, transparent 65%),
+        radial-gradient(ellipse 60px 30px at 22% 22%, rgba(255,255,255,0.13) 0%, transparent 65%),
+        radial-gradient(ellipse 45px 22px at 55% 85%, rgba(255,255,255,0.10) 0%, transparent 65%);
+    }
+
+    @keyframes caustics-move {
+      0%   { transform: scale(1)    translate(0px, 0px)    rotate(0deg);   opacity: 0.75; }
+      25%  { transform: scale(1.08) translate(18px,-12px)  rotate(1deg);   opacity: 1;    }
+      50%  { transform: scale(0.94) translate(-10px,16px)  rotate(-0.5deg);opacity: 0.82; }
+      75%  { transform: scale(1.05) translate(8px,-8px)    rotate(0.3deg); opacity: 0.95; }
+      100% { transform: scale(0.98) translate(-14px,6px)   rotate(-1deg);  opacity: 0.78; }
+    }
+    @keyframes caustics-move-2 {
+      0%   { transform: scale(1.06) translate(-12px,10px)  rotate(0.5deg); opacity: 0.85; }
+      33%  { transform: scale(0.92) translate(20px,-14px)  rotate(-0.8deg);opacity: 1;    }
+      66%  { transform: scale(1.10) translate(-6px,18px)   rotate(1.2deg); opacity: 0.70; }
+      100% { transform: scale(0.97) translate(14px,-8px)   rotate(-0.4deg);opacity: 0.90; }
+    }
+
+    /* Raias da piscina — linhas de fundo */
+    .pool-lanes {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent             0%,
+        transparent             calc(16.666% - 1.5px),
+        rgba(255,255,255,0.14)  calc(16.666% - 1.5px),
+        rgba(255,255,255,0.14)  16.666%
+      );
+    }
+
+    /* Cordas flutuantes das raias */
+    .pool-ropes {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(255,215,0,0.0)   0px,
+        rgba(255,215,0,0.0)   2px,
+        rgba(255,215,0,0.28)  2px,
+        rgba(255,215,0,0.28)  6px,
+        rgba(255,215,0,0.0)   6px,
+        rgba(255,215,0,0.0)   16.666%
+      );
+      background-size: 16.666% 100%;
+    }
+
+    /* Grade de azulejos no fundo */
+    .pool-tiles {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 44px 44px;
+    }
+
+    /* Reflexo da superfície no topo */
+    .pool-surface {
+      position: absolute;
+      top: 0; left: -8%; right: -8%;
+      height: 90px;
+      background: linear-gradient(
+        180deg,
+        rgba(200,248,255,0.72) 0%,
+        rgba(130,225,248,0.50) 35%,
+        rgba(60,190,230,0.25)  65%,
+        transparent            100%
+      );
+      animation: surface-wave 3.5s ease-in-out infinite alternate;
+    }
+    .pool-surface-2 {
+      position: absolute;
+      top: 4px; left: -12%; right: -12%;
+      height: 60px;
+      background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.35) 0%,
+        transparent            100%
+      );
+      animation: surface-wave 2.8s ease-in-out infinite alternate-reverse;
+      animation-delay: 0.4s;
+    }
+
+    @keyframes surface-wave {
+      0%   { transform: skewX(-0.8deg) translateX(0);    }
+      100% { transform: skewX(0.8deg)  translateX(22px); }
+    }
+
+    /* Overlay escuro para legibilidade do texto */
+    .pool-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        155deg,
+        rgba(0,18,36,0.70)  0%,
+        rgba(0,10,24,0.42)  45%,
+        rgba(0,5,18,0.58)   100%
+      );
+    }
+
+    /* ── NADADOR ───────────────────────────────────────────────────────── */
+    .swimmer-stage {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    /* Container do nadador — desloca da esquerda para a direita e volta */
+    .swimmer {
+      position: absolute;
+      bottom: 33%;
+      animation: swim-across 9s cubic-bezier(0.4, 0, 0.6, 1) infinite alternate;
+    }
+
+    @keyframes swim-across {
+      0%   { left: -175px;             transform: scaleX(1);  }
+      48%  { left: calc(100% + 20px);  transform: scaleX(1);  }
+      50%  { left: calc(100% + 20px);  transform: scaleX(-1); }
+      100% { left: -175px;             transform: scaleX(-1); }
+    }
+
+    /* Animação do braço de recuperação (gira sobre o ombro) */
+    .arm-recovery {
+      transform-origin: 100px 44px;
+      animation: arm-stroke 1.2s linear infinite;
+    }
+    @keyframes arm-stroke {
+      0%   { transform: rotate(0deg);   }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Pernas em batida alternada */
+    .leg-a { animation: kick-a 0.55s ease-in-out infinite alternate; transform-origin: 54px 52px; }
+    .leg-b { animation: kick-b 0.55s ease-in-out infinite alternate; transform-origin: 54px 52px; animation-delay: 0.275s; }
+    @keyframes kick-a { 0% { transform: rotate(-8deg); } 100% { transform: rotate(8deg); } }
+    @keyframes kick-b { 0% { transform: rotate(8deg);  } 100% { transform: rotate(-8deg); } }
+
+    /* Esteira de ondas (wake) atrás do nadador */
+    .wake {
+      position: absolute;
+      bottom: -6px;
+      left: -30px;
+      width: 220px;
+      height: 18px;
+      background: radial-gradient(ellipse 110px 9px at center, rgba(255,255,255,0.30) 0%, transparent 75%);
+      animation: wake-pulse 0.8s ease-in-out infinite alternate;
+    }
+    @keyframes wake-pulse {
+      0%   { transform: scaleX(0.85); opacity: 0.55; }
+      100% { transform: scaleX(1.15); opacity: 1;    }
+    }
+
+    /* ── CONTEÚDO HERO ────────────────────────────────────────────────── */
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 2rem;
+      max-width: 820px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(16,185,129,0.15);
+      border: 1px solid rgba(16,185,129,0.35);
+      color: var(--green);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+      padding: 0.4rem 1.1rem;
+      border-radius: 100px;
+      margin-bottom: 1.6rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.1rem, 5.5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.08;
+      margin-bottom: 1.3rem;
+      text-shadow: 0 3px 24px rgba(0,0,0,0.7);
+      letter-spacing: -0.02em;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--green);
+    }
+    .hero p {
+      font-size: clamp(1rem, 2.2vw, 1.22rem);
+      color: rgba(240,246,252,0.82);
+      max-width: 580px;
+      margin: 0 auto 2.2rem;
+      text-shadow: 0 1px 10px rgba(0,0,0,0.6);
+    }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-block;
+      background: var(--green);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.9rem 2.4rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.18s, box-shadow 0.2s;
+      box-shadow: 0 0 36px rgba(16,185,129,0.45);
+    }
+    .btn-primary:hover {
+      background: var(--green-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 0 50px rgba(16,185,129,0.6);
+    }
+    .btn-outline {
+      display: inline-block;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.85);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s, transform 0.18s;
+      backdrop-filter: blur(6px);
+    }
+    .btn-outline:hover {
+      border-color: var(--green);
+      color: var(--green);
+      transform: translateY(-2px);
+    }
+
+    /* Indicador scroll */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: scroll-bounce 2.2s ease-in-out infinite;
+    }
+    @keyframes scroll-bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0);   }
+      55%       { transform: translateX(-50%) translateY(9px); }
+    }
+    .scroll-arrow {
+      width: 20px; height: 20px;
+      border-right: 2px solid rgba(255,255,255,0.4);
+      border-bottom: 2px solid rgba(255,255,255,0.4);
+      transform: rotate(45deg);
+    }
+
+    /* ─── SEÇÕES COMUNS ─────────────────────────────────────────────── */
+    section { padding: 5.5rem 2rem; }
+    .container { max-width: 1120px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.65rem;
+    }
+    .section-title {
+      font-size: clamp(1.7rem, 3.8vw, 2.7rem);
+      font-weight: 900;
+      margin-bottom: 0.9rem;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+    }
+    .section-sub {
+      font-size: 1.02rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin-bottom: 3.5rem;
+      line-height: 1.65;
+    }
+
+    /* ─── BENEFÍCIOS ────────────────────────────────────────────────── */
+    #beneficios { background: var(--bg2); }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.4rem;
+    }
+    .benefit-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 2rem 1.6rem;
+      transition: transform 0.22s, border-color 0.22s, box-shadow 0.22s;
+      position: relative;
+      overflow: hidden;
+    }
+    .benefit-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--green), var(--amber));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+      border-radius: 18px 18px 0 0;
+    }
+    .benefit-card:hover { transform: translateY(-5px); border-color: rgba(16,185,129,0.28); box-shadow: 0 10px 36px rgba(0,0,0,0.35); }
+    .benefit-card:hover::after { transform: scaleX(1); }
+    .benefit-icon { font-size: 2.4rem; margin-bottom: 1.1rem; display: block; }
+    .benefit-card h3 { font-size: 1.06rem; font-weight: 700; margin-bottom: 0.55rem; }
+    .benefit-card p { font-size: 0.87rem; color: var(--text-muted); line-height: 1.6; }
+    .benefit-stat { margin-top: 1.2rem; font-size: 1.9rem; font-weight: 900; color: var(--green); line-height: 1; }
+    .benefit-stat-label { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.06em; margin-top: 0.2rem; }
+
+    /* ─── MODALIDADES ───────────────────────────────────────────────── */
+    #modalidades { background: var(--bg); }
+    .modalities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.4rem;
+    }
+    .modality-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.9rem;
+      display: flex;
+      gap: 1.3rem;
+      align-items: flex-start;
+      transition: transform 0.22s, border-color 0.22s, box-shadow 0.22s;
+    }
+    .modality-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(16,185,129,0.32);
+      box-shadow: 0 10px 36px rgba(0,0,0,0.35);
+    }
+    .mod-icon {
+      width: 58px; height: 58px;
+      border-radius: 15px;
+      background: rgba(16,185,129,0.10);
+      border: 1px solid rgba(16,185,129,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.9rem;
+      flex-shrink: 0;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .modality-card:hover .mod-icon {
+      background: rgba(16,185,129,0.18);
+      border-color: rgba(16,185,129,0.4);
+    }
+    .mod-info h3 { font-size: 1.08rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .mod-info p { font-size: 0.86rem; color: var(--text-muted); line-height: 1.58; }
+    .mod-tag {
+      display: inline-block;
+      margin-top: 0.7rem;
+      background: rgba(245,158,11,0.12);
+      color: var(--amber);
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.22rem 0.65rem;
+      border-radius: 100px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid rgba(245,158,11,0.25);
+    }
+
+    /* ─── PATROCINADOR — BOA FARMA ───────────────────────────────────── */
+    .sponsor-section {
+      padding: 4.5rem 2rem;
+      background:
+        linear-gradient(135deg, rgba(5,150,105,0.12) 0%, transparent 60%),
+        linear-gradient(225deg, rgba(5,150,105,0.08) 0%, transparent 60%),
+        #0b1e14;
+      border-top: 1px solid rgba(16,185,129,0.18);
+      border-bottom: 1px solid rgba(16,185,129,0.18);
+      position: relative;
+      overflow: hidden;
+    }
+    .sponsor-section::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(16,185,129,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .sponsor-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    .sponsor-left { min-width: 260px; }
+    .sponsor-eyebrow {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(16,185,129,0.65);
+      margin-bottom: 1.2rem;
+    }
+    .sponsor-logo {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      margin-bottom: 1rem;
+    }
+    .sponsor-icon {
+      width: 68px; height: 68px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #047857, #10b981);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 0 40px rgba(16,185,129,0.4), 0 4px 16px rgba(0,0,0,0.4);
+      flex-shrink: 0;
+    }
+    .sponsor-name-wrap { display: flex; flex-direction: column; }
+    .sponsor-name {
+      font-size: 2.1rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .sponsor-name .green { color: var(--green); }
+    .sponsor-subtitle {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      margin-top: 0.2rem;
+    }
+    .sponsor-right { max-width: 440px; }
+    .sponsor-right p {
+      font-size: 1.04rem;
+      color: rgba(240,246,252,0.78);
+      line-height: 1.7;
+      margin-bottom: 1.4rem;
+    }
+    .sponsor-highlight {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      border-left: 3px solid var(--green);
+      padding-left: 1rem;
+      font-style: italic;
+      margin-bottom: 1.6rem;
+      line-height: 1.6;
+    }
+    .btn-sponsor {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1.5px solid var(--green);
+      color: var(--green);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.72rem 1.7rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.22s, color 0.22s, box-shadow 0.22s;
+    }
+    .btn-sponsor:hover {
+      background: var(--green);
+      color: #fff;
+      box-shadow: 0 0 28px rgba(16,185,129,0.45);
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────────────────── */
+    footer {
+      background: #070a0f;
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .footer-logo {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--green);
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+    .footer-logo span { color: var(--text); }
+    footer .tagline {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+    footer .sponsor-credit {
+      font-size: 0.78rem;
+      color: rgba(139,154,177,0.6);
+    }
+    footer .sponsor-credit a { color: var(--green); text-decoration: none; }
+    footer .sponsor-credit a:hover { text-decoration: underline; }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────────────── */
+    @media (max-width: 680px) {
+      nav { display: none; }
+      header { padding: 0.8rem 1.2rem; }
+      .hero h1 { font-size: 1.9rem; }
+      .hero p  { font-size: 0.97rem; }
+      .sponsor-inner { flex-direction: column; text-align: center; }
+      .sponsor-logo  { justify-content: center; }
+      .sponsor-highlight { text-align: left; }
+      .modalities-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HEADER
+  ═══════════════════════════════════════════════════════ -->
+  <header>
+    <div class="logo">Fit<span>Code</span></div>
+    <nav>
+      <a href="#beneficios">Benefícios</a>
+      <a href="#modalidades">Modalidades</a>
+      <a href="#patrocinador">Parceiro</a>
+      <a href="#modalidades" class="nav-cta">Matricule-se</a>
+    </nav>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO — PISCINA COM NADADOR
+  ═══════════════════════════════════════════════════════ -->
+  <section id="hero">
+
+    <!-- Camadas da piscina -->
+    <div class="pool"></div>
+    <div class="pool-tiles"></div>
+    <div class="pool-lanes"></div>
+    <div class="pool-ropes"></div>
+    <div class="pool-caustics"></div>
+    <div class="pool-caustics-2"></div>
+    <div class="pool-surface"></div>
+    <div class="pool-surface-2"></div>
+    <div class="pool-overlay"></div>
+
+    <!-- Nadador animado -->
+    <div class="swimmer-stage">
+      <div class="swimmer">
+        <!-- Esteira de ondas -->
+        <div class="wake"></div>
+
+        <!-- SVG do nadador em estilo crawl (vista lateral) -->
+        <svg width="168" height="88" viewBox="0 0 168 88"
+             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+          <!-- ── Braço estendido à frente (submerso) ── -->
+          <path d="M 112 50 Q 130 44 158 40"
+                stroke="#c0855a" stroke-width="9" stroke-linecap="round" fill="none" opacity="0.90"/>
+          <!-- Mão dianteira -->
+          <ellipse cx="158" cy="40" rx="8" ry="4"
+                   fill="#c0855a" transform="rotate(-14 158 40)" opacity="0.9"/>
+
+          <!-- ── Tronco / torso ── -->
+          <path d="M 56 55 Q 72 48 90 46 Q 104 45 112 49"
+                stroke="#1c1c1c" stroke-width="15" stroke-linecap="round" fill="none"/>
+          <!-- Maiô/calção (cor escura sobre o tronco) -->
+          <path d="M 58 55 Q 73 49 88 47"
+                stroke="#1d3a6e" stroke-width="10" stroke-linecap="round" fill="none"/>
+
+          <!-- ── Cabeça ── -->
+          <circle cx="110" cy="43" r="13" fill="#c0855a"/>
+
+          <!-- Touca de natação -->
+          <path d="M 99 40 Q 100 27 110 26 Q 120 26 122 33 Q 124 39 119 45"
+                fill="#d62828" stroke="none"/>
+          <!-- Detalhe da touca — reflexo -->
+          <path d="M 102 30 Q 108 26 115 29" stroke="rgba(255,255,255,0.35)"
+                stroke-width="2" fill="none" stroke-linecap="round"/>
+
+          <!-- Óculos de natação — tira -->
+          <line x1="100" y1="44" x2="123" y2="42" stroke="#222" stroke-width="2.5"/>
+          <!-- Óculos — lente -->
+          <ellipse cx="119" cy="43" rx="5.5" ry="4"
+                   fill="rgba(100,210,240,0.40)" stroke="#222" stroke-width="1.5"/>
+          <ellipse cx="119" cy="43" rx="2.5" ry="2"
+                   fill="rgba(255,255,255,0.15)"/>
+
+          <!-- Orelha -->
+          <ellipse cx="100" cy="42" rx="3" ry="4.5" fill="#a8693d"/>
+
+          <!-- ── Braço de recuperação (acima da água) ── -->
+          <g class="arm-recovery">
+            <path d="M 106 32 Q 88 6 66 20 Q 58 24 55 36"
+                  stroke="#c0855a" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.92"/>
+            <!-- Mão do braço de recuperação -->
+            <ellipse cx="54" cy="37" rx="7" ry="3.5"
+                     fill="#c0855a" transform="rotate(-35 54 37)" opacity="0.9"/>
+          </g>
+
+          <!-- ── Quadril ── -->
+          <ellipse cx="62" cy="56" rx="11" ry="6.5" fill="#1d3a6e"/>
+
+          <!-- ── Perna A (chute para baixo) ── -->
+          <g class="leg-a">
+            <path d="M 58 60 Q 38 62 20 57" stroke="#1c1c1c" stroke-width="11" stroke-linecap="round" fill="none"/>
+            <path d="M 20 57 Q 12 58 8 65"  stroke="#1c1c1c" stroke-width="9"  stroke-linecap="round" fill="none"/>
+            <ellipse cx="6" cy="67" rx="9" ry="3.5" fill="#1c1c1c" transform="rotate(-15 6 67)"/>
+          </g>
+
+          <!-- ── Perna B (chute para cima) ── -->
+          <g class="leg-b">
+            <path d="M 56 65 Q 36 70 18 66"  stroke="#2d2d2d" stroke-width="10" stroke-linecap="round" fill="none"/>
+            <path d="M 18 66 Q 10 64 5 58"   stroke="#2d2d2d" stroke-width="8"  stroke-linecap="round" fill="none"/>
+            <ellipse cx="4" cy="57" rx="9" ry="3.5" fill="#2d2d2d" transform="rotate(12 4 57)"/>
+          </g>
+
+          <!-- Linha d'água passando pelo nadador -->
+          <path d="M 30 48 Q 55 44 80 48 Q 100 52 125 47 Q 140 44 160 47"
+                stroke="rgba(255,255,255,0.38)" stroke-width="2" fill="none"
+                stroke-dasharray="6,4"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Conteúdo sobreposto -->
+    <div class="hero-content">
+      <div class="hero-badge">&#9679; Transformação Real</div>
+      <h1>Seu corpo é capaz de<br><em>muito mais</em> do que<br>você imagina</h1>
+      <p>Ciência e movimento unidos para transformar sua saúde, sua mente e sua vida.
+         Descubra como praticar esporte muda tudo — de dentro para fora.</p>
+      <div class="hero-btns">
+        <a href="#modalidades" class="btn-primary">Ver Modalidades</a>
+        <a href="#beneficios"  class="btn-outline">Por que se exercitar?</a>
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="scroll-hint">
+      <span>Explore</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       BENEFÍCIOS
+  ═══════════════════════════════════════════════════════ -->
+  <section id="beneficios">
+    <div class="container">
+      <p class="section-label">Por que se exercitar</p>
+      <h2 class="section-title">Benefícios comprovados<br>pela ciência</h2>
+      <p class="section-sub">
+        Praticar esporte regularmente é a decisão mais impactante que você pode tomar
+        pela sua saúde — física e mental.
+      </p>
+      <div class="benefits-grid">
+
+        <div class="benefit-card">
+          <span class="benefit-icon">❤️</span>
+          <h3>Saúde Cardiovascular</h3>
+          <p>O exercício fortalece o coração, reduz a pressão arterial e diminui
+             significativamente o risco de doenças cardíacas.</p>
+          <div class="benefit-stat">35%</div>
+          <div class="benefit-stat-label">de redução no risco cardíaco</div>
+        </div>
+
+        <div class="benefit-card">
+          <span class="benefit-icon">🧠</span>
+          <h3>Bem-estar Mental</h3>
+          <p>Atividade física libera endorfinas e serotonina, combatendo ansiedade,
+             depressão e melhorando o sono profundamente.</p>
+          <div class="benefit-stat">+47%</div>
+          <div class="benefit-stat-label">de melhora no humor</div>
+        </div>
+
+        <div class="benefit-card">
+          <span class="benefit-icon">💪</span>
+          <h3>Força & Longevidade</h3>
+          <p>Músculos mais fortes protegem articulações, melhoram a postura e
+             aumentam a qualidade de vida por décadas.</p>
+          <div class="benefit-stat">+12</div>
+          <div class="benefit-stat-label">anos a mais de vida ativa</div>
+        </div>
+
+        <div class="benefit-card">
+          <span class="benefit-icon">🤝</span>
+          <h3>Comunidade & Motivação</h3>
+          <p>Treinar junto cria laços reais. Nossa comunidade mantém você motivado
+             nos dias difíceis e celebra cada conquista.</p>
+          <div class="benefit-stat">2×</div>
+          <div class="benefit-stat-label">mais consistência em grupo</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       MODALIDADES
+  ═══════════════════════════════════════════════════════ -->
+  <section id="modalidades">
+    <div class="container">
+      <p class="section-label">O que oferecemos</p>
+      <h2 class="section-title">Escolha sua<br>modalidade</h2>
+      <p class="section-sub">
+        Seis modalidades, um objetivo: encontrar o movimento que vai mudar
+        a sua vida e que você vai amar praticar todo dia.
+      </p>
+      <div class="modalities-grid">
+
+        <div class="modality-card">
+          <div class="mod-icon">🏋️</div>
+          <div class="mod-info">
+            <h3>Musculação</h3>
+            <p>Ganho de massa muscular, definição e força com acompanhamento
+               individualizado de instrutores certificados.</p>
+            <span class="mod-tag">Todos os níveis</span>
+          </div>
+        </div>
+
+        <div class="modality-card">
+          <div class="mod-icon">🏊</div>
+          <div class="mod-info">
+            <h3>Natação</h3>
+            <p>O exercício mais completo do mundo. Trabalha todos os grupos musculares
+               sem impacto nas articulações — ideal para todas as idades.</p>
+            <span class="mod-tag">Zero impacto</span>
+          </div>
+        </div>
+
+        <div class="modality-card">
+          <div class="mod-icon">🧘</div>
+          <div class="mod-info">
+            <h3>Yoga</h3>
+            <p>Flexibilidade, equilíbrio e mindfulness em harmonia. Reduza o estresse
+               e melhore a conexão corpo-mente com nossas instrutoras especializadas.</p>
+            <span class="mod-tag">Anti-estresse</span>
+          </div>
+        </div>
+
+        <div class="modality-card">
+          <div class="mod-icon">🔥</div>
+          <div class="mod-info">
+            <h3>CrossFit</h3>
+            <p>Alta intensidade, resultados acelerados. Treinamento funcional em
+               comunidade com foco em performance e superação de limites.</p>
+            <span class="mod-tag">Alta intensidade</span>
+          </div>
+        </div>
+
+        <div class="modality-card">
+          <div class="mod-icon">🏃</div>
+          <div class="mod-info">
+            <h3>Corrida</h3>
+            <p>Assessoria de corrida com planilhas periodizadas para quem quer
+               completar o primeiro 5K ou bater o recorde pessoal na maratona.</p>
+            <span class="mod-tag">Iniciante ao avançado</span>
+          </div>
+        </div>
+
+        <div class="modality-card">
+          <div class="mod-icon">🥊</div>
+          <div class="mod-info">
+            <h3>Artes Marciais</h3>
+            <p>Muay thai, jiu-jitsu e boxe com mestres experientes. Aprenda
+               autodefesa, disciplina e supere seus limites a cada aula.</p>
+            <span class="mod-tag">Defesa & disciplina</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       PATROCINADOR — BOA FARMA
+  ═══════════════════════════════════════════════════════ -->
+  <div id="patrocinador" class="sponsor-section">
+    <div class="sponsor-inner">
+
+      <div class="sponsor-left">
+        <p class="sponsor-eyebrow">✦ Patrocinador Oficial</p>
+        <div class="sponsor-logo">
+          <div class="sponsor-icon">💊</div>
+          <div class="sponsor-name-wrap">
+            <span class="sponsor-name">Boa<span class="green">Farma</span></span>
+            <span class="sponsor-subtitle">Saúde &amp; Bem-estar</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sponsor-right">
+        <p>A <strong>Boa Farma</strong> acredita que saúde vai muito além dos medicamentos.
+           Por isso, apoia a Academia FitCode levando suplementação de qualidade,
+           vitaminas e orientação farmacêutica especializada para todos os atletas.</p>
+        <blockquote class="sponsor-highlight">
+          "Movimento é remédio. E quando o movimento encontra a nutrição certa,
+           os resultados são extraordinários."
+        </blockquote>
+        <a href="#" class="btn-sponsor">
+          Conhecer a Boa Farma &#8594;
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════════════ -->
+  <footer>
+    <div class="footer-logo">Fit<span>Code</span></div>
+    <p class="tagline">Transforme seu corpo. Liberte sua mente. Viva mais.</p>
+    <p class="sponsor-credit">Patrocinado com orgulho pela <a href="#">Boa Farma</a> — Saúde &amp; Bem-estar</p>
+  </footer>
+
+</body>
+</html>

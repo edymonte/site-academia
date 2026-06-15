@@ -1,0 +1,43 @@
+{
+  "hooks": [
+    {
+      "name": "lint-guard",
+      "description": "Bloqueia edições de HTML que violem acessibilidade ou nomenclatura CSS do projeto",
+      "event": "postToolUse",
+      "tools": ["create_file", "replace_string_in_file", "multi_replace_string_in_file"],
+      "script": {
+        "windows": ".github/hooks/scripts/lint-guard.ps1",
+        "linux": ".github/hooks/scripts/lint-guard.sh",
+        "mac": ".github/hooks/scripts/lint-guard.sh"
+      },
+      "rules": [
+        {
+          "id": "no-div-semantic",
+          "description": "Proibido usar <div> onde elemento semântico se aplica",
+          "pattern": "<div\\s+(class|id)=\"(header|nav|main|footer|section|article|aside)\"",
+          "severity": "error"
+        },
+        {
+          "id": "img-requires-alt",
+          "description": "Toda <img> deve ter atributo alt",
+          "pattern": "<img(?![^>]*\\balt=)[^>]*>",
+          "severity": "error"
+        },
+        {
+          "id": "css-prefix",
+          "description": "Classes CSS devem usar prefixo fc-",
+          "pattern": "class=\"(?!fc-)[a-z][a-z0-9-]*\"",
+          "severity": "warning"
+        },
+        {
+          "id": "outline-none",
+          "description": "outline: none remove foco visível (WCAG 2.4.7)",
+          "pattern": "outline:\\s*none",
+          "severity": "warning"
+        }
+      ],
+      "onViolation": "warn",
+      "message": "[lint-guard] Violação de governança detectada. Revise as instructions em .github/copilot-instructions.md"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "servers": {
+    "fetch": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-fetch"],
+      "description": "Permite ao Copilot buscar conteúdo de URLs externas (documentação, APIs, referências de design)"
+    },
+    "filesystem": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "${workspaceFolder}"
+      ],
+      "description": "Permite ao Copilot ler, listar e navegar arquivos do repositório site-academia"
+    }
+  }
+}

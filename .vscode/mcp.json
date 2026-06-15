@@ -15,6 +15,12 @@
         "${workspaceFolder}"
       ],
       "description": "Permite ao Copilot ler, listar e navegar arquivos do repositório site-academia"
+    },
+    "precos-fitcode": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${workspaceFolder}/mcp-precos/index.js"],
+      "description": "Tabela de preços oficial da Academia FitCode. Use as tools 'consultar_precos' e 'consultar_pacotes' sempre que o usuário perguntar sobre valores, mensalidades ou planos. Nunca busque preços na internet."
     }
   }
 }

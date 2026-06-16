@@ -604,6 +604,66 @@
       box-shadow: 0 0 28px rgba(16,185,129,0.45);
     }
 
+    /* ─── DEPOIMENTOS ──────────────────────────────────────────────── */
+    #depoimentos { background: var(--bg2); }
+    .fc-depoimentos__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.4rem;
+    }
+    @media (min-width: 600px) {
+      .fc-depoimentos__grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .fc-depoimento-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 2rem 1.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      transition: transform 0.22s, border-color 0.22s, box-shadow 0.22s;
+    }
+    .fc-depoimento-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(16,185,129,0.28);
+      box-shadow: 0 10px 36px rgba(0,0,0,0.35);
+    }
+    .fc-depoimento-card__foto {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(16,185,129,0.35);
+    }
+    .fc-depoimento-card__estrelas {
+      color: var(--amber);
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+    }
+    .fc-depoimento-card__texto {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      font-style: italic;
+      flex: 1;
+    }
+    .fc-depoimento-card__nome {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .fc-depoimento-card__modalidade {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.2rem;
+    }
+
     /* ─── FOOTER ────────────────────────────────────────────────────── */
     footer {
       background: #070a0f;
@@ -654,6 +714,7 @@
     <nav aria-label="Navegação principal">
       <a href="#beneficios">Benefícios</a>
       <a href="#modalidades">Modalidades</a>
+      <a href="#depoimentos">Depoimentos</a>
       <a href="#patrocinador">Parceiro</a>
       <a href="#modalidades" class="nav-cta">Matricule-se</a>
     </nav>
@@ -900,6 +961,83 @@
             <span class="mod-tag">Defesa & disciplina</span>
           </div>
         </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       DEPOIMENTOS
+  ═══════════════════════════════════════════════════════ -->
+  <section id="depoimentos" aria-labelledby="titulo-depoimentos">
+    <div class="container">
+      <p class="section-label">O que dizem nossos alunos</p>
+      <h2 id="titulo-depoimentos" class="section-title">Histórias reais de<br>transformação</h2>
+      <p class="section-sub">
+        Cada conquista começa com uma decisão. Conheça quem já deu o primeiro passo
+        e não parou mais.
+      </p>
+      <div class="fc-depoimentos__grid">
+
+        <article class="fc-depoimento-card">
+          <img
+            class="fc-depoimento-card__foto"
+            src="https://images.unsplash.com/photo-1614886137799-843cce3a74c1?w=200&h=200&fit=crop&crop=face"
+            alt="Ana Carolina, aluna de Yoga na Academia FitCode"
+            width="72" height="72"
+            loading="lazy"
+          >
+          <span class="fc-depoimento-card__estrelas" role="img" aria-label="Avaliação: 5 de 5 estrelas">★★★★★</span>
+          <p class="fc-depoimento-card__texto">
+            "Comecei o yoga aqui há seis meses sem saber nada. Hoje durmo melhor,
+            a ansiedade diminuiu e me sinto mais presente em tudo. A FitCode mudou
+            minha relação comigo mesma."
+          </p>
+          <div>
+            <p class="fc-depoimento-card__nome">Ana Carolina</p>
+            <p class="fc-depoimento-card__modalidade">Yoga · 6 meses</p>
+          </div>
+        </article>
+
+        <article class="fc-depoimento-card">
+          <img
+            class="fc-depoimento-card__foto"
+            src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=200&h=200&fit=crop&crop=face"
+            alt="Rafael Souza, aluno de Musculação na Academia FitCode"
+            width="72" height="72"
+            loading="lazy"
+          >
+          <span class="fc-depoimento-card__estrelas" role="img" aria-label="Avaliação: 5 de 5 estrelas">★★★★★</span>
+          <p class="fc-depoimento-card__texto">
+            "Perdi 12 kg em quatro meses com acompanhamento individualizado dos
+            instrutores. O ambiente aqui é incrível — todo mundo se ajuda e a
+            motivação é contagiante."
+          </p>
+          <div>
+            <p class="fc-depoimento-card__nome">Rafael Souza</p>
+            <p class="fc-depoimento-card__modalidade">Musculação · 4 meses</p>
+          </div>
+        </article>
+
+        <article class="fc-depoimento-card">
+          <img
+            class="fc-depoimento-card__foto"
+            src="https://images.unsplash.com/photo-1548690312-e3b507d8c110?w=200&h=200&fit=crop&crop=face"
+            alt="Juliana Mendes, aluna de Natação na Academia FitCode"
+            width="72" height="72"
+            loading="lazy"
+          >
+          <span class="fc-depoimento-card__estrelas" role="img" aria-label="Avaliação: 5 de 5 estrelas">★★★★★</span>
+          <p class="fc-depoimento-card__texto">
+            "Entrei na natação com medo de água. Hoje nado 1 km sem parar e me
+            sinto mais forte do que nunca. Os professores aqui são pacientes,
+            técnicos e apaixonados pelo que fazem."
+          </p>
+          <div>
+            <p class="fc-depoimento-card__nome">Juliana Mendes</p>
+            <p class="fc-depoimento-card__modalidade">Natação · 8 meses</p>
+          </div>
+        </article>
 
       </div>
     </div>

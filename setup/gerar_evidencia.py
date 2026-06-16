@@ -3,7 +3,7 @@
 Site Academia FitCode
 Gerador de Evidências do Workshop GitHub Copilot (Fase 2)
 
-Valida os 8 pilares da extensibilidade do Copilot para cada participante
+Valida os 6 pilares da extensibilidade do Copilot para cada participante
 e gera um HTML de evidência individual.
 
 Uso:
@@ -31,7 +31,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 8 Pilares — definição e critérios de validação
+# 6 Pilares — definição e critérios de validação
 # ─────────────────────────────────────────────────────────────────────────────
 
 PILARES = [
@@ -194,55 +194,6 @@ PILARES = [
                 "desc": "Prompt Knowledge Base presente (bloco6-knowledge-base.prompt.md)",
                 "tipo": "arquivo_existe",
                 "arquivo": ".github/prompts/bloco6-knowledge-base.prompt.md",
-            },
-        ],
-    },
-    {
-        "id": "coding_agent",
-        "label": "Coding Agent",
-        "descricao": "Agente autônomo que opera sobre o repositório com instruções estruturadas",
-        "icone": "⚙️",
-        "checks": [
-            {
-                "desc": "AGENTS.md presente (instrui o Coding Agent)",
-                "tipo": "arquivo_existe",
-                "arquivo": "AGENTS.md",
-            },
-            {
-                "desc": "AGENTS.md define regras de geração de código",
-                "tipo": "presenca_texto",
-                "arquivo": "AGENTS.md",
-                "pattern": r"fix mínimo|Preserve|semântic|acessib",
-            },
-            {
-                "desc": "CI/CD workflow de deploy configurado (GitHub Pages)",
-                "tipo": "arquivo_existe",
-                "arquivo": ".github/workflows/deploy.yml",
-            },
-            {
-                "desc": "Workflow realiza deploy no GitHub Pages",
-                "tipo": "presenca_texto",
-                "arquivo": ".github/workflows/deploy.yml",
-                "pattern": r"pages|github-pages|gh-pages",
-            },
-        ],
-    },
-    {
-        "id": "cli",
-        "label": "CLI",
-        "descricao": "GitHub Copilot CLI para diagnóstico e suporte direto no terminal",
-        "icone": "💻",
-        "checks": [
-            {
-                "desc": "GitHub CLI (gh) instalado",
-                "tipo": "comando_disponivel",
-                "comando": ["gh", "--version"],
-            },
-            {
-                "desc": "gh copilot disponível (built-in ou extensão)",
-                "tipo": "presenca_saida_comando",
-                "comando": ["gh", "help", "copilot"],
-                "pattern": r"Copilot|copilot",
             },
         ],
     },

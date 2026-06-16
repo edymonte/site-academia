@@ -115,8 +115,9 @@ const PRECOS = {
 
 let inputBuffer = Buffer.alloc(0);
 
+process.stdin.resume();
 process.stdin.on('data', (chunk) => {
-  inputBuffer = Buffer.concat([inputBuffer, chunk]);
+  inputBuffer = Buffer.concat([inputBuffer, Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk)]);
   processMessages();
 });
 
@@ -151,18 +152,22 @@ function processMessages() {
 
 function send(msg) {
   const json = JSON.stringify(msg);
-  const frame = `Content-Length: ${Buffer.byteLength(json, 'utf8')}\r\n\r\n${json}`;
-  process.stdout.write(frame);
+  const header = `Content-Length: ${Buffer.byteLength(json, 'utf8')}\r\n\r\n`;
+  process.stdout.write(Buffer.from(header, 'utf8'));
+  process.stdout.write(Buffer.from(json, 'utf8'));
 }
 
 function handleMessage(msg) {
   const { id, method, params } = msg;
 
   if (method === 'initialize') {
+    const requestedVersion = params?.protocolVersion ?? '2024-11-05';
+    const supported = ['2024-11-05', '2025-03-26'];
+    const version = supported.includes(requestedVersion) ? requestedVersion : '2024-11-05';
     return send({
       jsonrpc: '2.0', id,
       result: {
-        protocolVersion: '2024-11-05',
+        protocolVersion: version,
         capabilities: { tools: {} },
         serverInfo: { name: 'mcp-precos-fitcode', version: '1.0.0' }
       }

@@ -673,7 +673,10 @@
       grid-template-columns: 1fr;
       gap: 1.4rem;
     }
-    @media (min-width: 640px) {
+    @media (min-width: 480px) {
+      .fc-testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 768px) {
       .fc-testimonials-grid { grid-template-columns: repeat(3, 1fr); }
     }
     .fc-testimonial-card {
@@ -717,8 +720,8 @@
       display: flex;
       align-items: center;
       gap: 0.9rem;
-      padding-top: 1.2rem;
-      border-top: 1px solid var(--border);
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--border);
     }
     .fc-testimonial-avatar {
       width: 52px;
@@ -1064,15 +1067,8 @@
       </p>
       <div class="fc-testimonials-grid">
 
-        <article class="fc-testimonial-card">
-          <div class="fc-testimonial-body">
-            <blockquote>
-              <p>"Nunca imaginei que conseguiria transformar meu corpo assim.
-                 Em 18 meses de musculação na FitCode, perdi 12 kg e ganhei
-                 uma confiança que mudou minha vida profissional e pessoal."</p>
-            </blockquote>
-          </div>
-          <footer class="fc-testimonial-author">
+        <article class="fc-testimonial-card" aria-labelledby="dep-mariana">
+          <header class="fc-testimonial-author">
             <img
               src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face"
               alt="Foto de Mariana Costa, aluna de musculação na Academia FitCode"
@@ -1081,21 +1077,21 @@
               loading="lazy"
               class="fc-testimonial-avatar">
             <div class="fc-testimonial-info">
-              <h3 class="fc-testimonial-name">Mariana Costa</h3>
+              <h3 id="dep-mariana" class="fc-testimonial-name">Mariana Costa</h3>
               <span class="fc-testimonial-detail">Musculação · 1 ano e meio</span>
             </div>
-          </footer>
-        </article>
-
-        <article class="fc-testimonial-card">
+          </header>
           <div class="fc-testimonial-body">
             <blockquote>
-              <p>"O CrossFit aqui é diferente. Os instrutores te desafiam no
-                 limite certo, a comunidade te empurra para frente e os resultados
-                 chegam rápido. Indico para quem quer evolução de verdade."</p>
+              <p>"Nunca imaginei que conseguiria transformar meu corpo assim.
+                 Em 18 meses de musculação na FitCode, perdi 12 kg e ganhei
+                 uma confiança que mudou minha vida profissional e pessoal."</p>
             </blockquote>
           </div>
-          <footer class="fc-testimonial-author">
+        </article>
+
+        <article class="fc-testimonial-card" aria-labelledby="dep-rafael">
+          <header class="fc-testimonial-author">
             <img
               src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face"
               alt="Foto de Rafael Mendes, aluno de CrossFit na Academia FitCode"
@@ -1104,21 +1100,21 @@
               loading="lazy"
               class="fc-testimonial-avatar">
             <div class="fc-testimonial-info">
-              <h3 class="fc-testimonial-name">Rafael Mendes</h3>
+              <h3 id="dep-rafael" class="fc-testimonial-name">Rafael Mendes</h3>
               <span class="fc-testimonial-detail">CrossFit · 8 meses</span>
             </div>
-          </footer>
-        </article>
-
-        <article class="fc-testimonial-card">
+          </header>
           <div class="fc-testimonial-body">
             <blockquote>
-              <p>"Comecei com a natação por causa da minha coluna e me apaixonei
-                 pelo yoga também. A FitCode virou meu segundo lar. Minha saúde
-                 mental e física nunca foram tão boas quanto agora."</p>
+              <p>"O CrossFit aqui é diferente. Os instrutores te desafiam no
+                 limite certo, a comunidade te empurra para frente e os resultados
+                 chegam rápido. Indico para quem quer evolução de verdade."</p>
             </blockquote>
           </div>
-          <footer class="fc-testimonial-author">
+        </article>
+
+        <article class="fc-testimonial-card" aria-labelledby="dep-juliana">
+          <header class="fc-testimonial-author">
             <img
               src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&fit=crop&crop=face"
               alt="Foto de Juliana Andrade, aluna de natação e yoga na Academia FitCode"
@@ -1127,10 +1123,17 @@
               loading="lazy"
               class="fc-testimonial-avatar">
             <div class="fc-testimonial-info">
-              <h3 class="fc-testimonial-name">Juliana Andrade</h3>
+              <h3 id="dep-juliana" class="fc-testimonial-name">Juliana Andrade</h3>
               <span class="fc-testimonial-detail">Natação &amp; Yoga · 3 anos</span>
             </div>
-          </footer>
+          </header>
+          <div class="fc-testimonial-body">
+            <blockquote>
+              <p>"Comecei com a natação por causa da minha coluna e me apaixonei
+                 pelo yoga também. A FitCode virou meu segundo lar. Minha saúde
+                 mental e física nunca foram tão boas quanto agora."</p>
+            </blockquote>
+          </div>
         </article>
 
       </div>

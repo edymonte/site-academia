@@ -11,97 +11,174 @@ tr th {
 }
 </style>
 
-## ✅ Etapas a seguir
+# 🚀 Guia de Início — Workshop GitHub Copilot
 
-### **1. Clonar o repositório base**
+> Bem-vindo! Este guia vai te conduzir passo a passo pela configuração do seu ambiente
+> antes de mergulharmos nos **pilares de Governança do Copilot**.
+>
+> Siga cada etapa na ordem indicada. Ao final, você terá seu repositório pronto para o workshop. 💪
 
-Clone o repositório abaixo:
+---
 
-**Repositório:**
+## 📋 Pré-requisitos
 
-`edymonte/site-academia` — *Academia FitCode: site com benefícios do esporte, modalidades e patrocinadores.*
+Antes de começar, verifique se você tem instalado:
+
+| Ferramenta | Verificar com | Download |
+|------------|--------------|----------|
+| **Git** | `git --version` | [git-scm.com](https://git-scm.com/download/win) |
+| **Node.js** | `node --version` | [nodejs.org](https://nodejs.org) |
+| **GitHub CLI** | `gh --version` | [cli.github.com](https://cli.github.com) |
+| **VS Code** | — | [code.visualstudio.com](https://code.visualstudio.com) |
+
+> 💡 **Dica:** Com o GitHub CLI instalado, autentique-se antes de continuar:
+> ```bash
+> gh auth login
+> ```
+
+---
+
+## 🗺️ Visão Geral do que vamos construir
+
+```
+📁 site-academia/          ← repositório base (referência, não mexa)
+📁 site-participante/      ← SEU repositório (onde tudo acontece)
+    ├── .github/
+    │   └── workflows/     ← CI/CD já configurado
+    ├── setup/             ← gerador de evidências
+    ├── evidencias/        ← HTMLs gerados ao final
+    ├── PARTICIPANTE.md
+    └── 🌐 seu site aqui
+```
+
+---
+
+## ✅ Etapas
+
+### **Etapa 1 — Clonar o repositório base** 📥
+
+Este repositório contém a estrutura de referência do workshop.
 
 ```bash
 git clone https://github.com/edymonte/site-academia
 ```
 
+> ℹ️ Você usará este repositório apenas como **referência e fonte de arquivos**.
+> Não desenvolva nada diretamente aqui.
+
 ---
 
-### **2. Criar o repositório do seu projeto no GitHub**
+### **Etapa 2 — Criar o seu repositório no GitHub** 🏗️
 
-- Crie um novo repositório público no GitHub com o nome do seu site
+Este será o repositório onde você vai desenvolver seu site e aplicar os pilares de Governança.
 
-> **Substitua `site-participante` pelo nome real do seu projeto**
+> ⚠️ **Substitua `site-participante` pelo nome do seu projeto antes de executar.**
 
 ```bash
 gh repo create site-participante --public
 ```
 
-- Em seguida, clone-o localmente — este será o **segundo diretório**:
+Em seguida, clone-o localmente — este será o seu **diretório de trabalho**:
 
 ```bash
 git clone https://github.com/<seu-usuario>/site-participante
+cd site-participante
 ```
 
 ---
 
-### **3. Copiar a estrutura base para o segundo diretório**
+### **Etapa 3 — Copiar a estrutura base** 📂
 
-Copie os seguintes itens do repositório base para dentro de `site-participante/`:
+Copie os arquivos necessários do repositório base para o seu:
 
 ```bash
-cp -r site-academia/.github/workflows  site-participante/.github/workflows
-cp -r site-academia/setup              site-participante/
-cp -r site-academia/evidencias         site-participante/
-cp    site-academia/PARTICIPANTE.md    site-participante/
+# Windows (PowerShell)
+Copy-Item -Recurse ..\site-academia\.github\workflows  .github\workflows
+Copy-Item -Recurse ..\site-academia\setup              .\
+Copy-Item -Recurse ..\site-academia\evidencias         .\
+Copy-Item           ..\site-academia\PARTICIPANTE.md   .\
+
+# Linux / Mac
+cp -r ../site-academia/.github/workflows  .github/
+cp -r ../site-academia/setup              ./
+cp -r ../site-academia/evidencias         ./
+cp    ../site-academia/PARTICIPANTE.md    ./
 ```
 
-> **Observação:** Copiamos apenas o `workflows/` do `.github/` — o restante da pasta será construído **pilar por pilar** durante o workshop.
+> 💡 **Por que apenas o `workflows/`?**
+> O restante do `.github/` — instructions, skills, agents, hooks — será construído
+> **pilar por pilar** durante o workshop. Esse é o objetivo! 🎯
+
+Confirme a estrutura criada:
+
+```bash
+git add .
+git commit -m "chore: estrutura base do projeto"
+git push origin main
+```
 
 ---
 
-### **4. Desenvolver seu próprio site**
+### **Etapa 4 — Desenvolver o seu site** 🎨
 
 - Desenvolva seu site dentro do diretório `site-participante/`
-- Utilize a tecnologia de sua preferência
+- Use a tecnologia de sua preferência (HTML/CSS, React, Vue, etc.)
 
-> 
-> **Importante:**
-> 
-> Os diretórios `setup`, `evidencias`, `.github` e o arquivo `PARTICIPANTE.md` **devem permanecer no projeto**
-> 
+> ⚠️ **Importante:** os diretórios `setup/`, `evidencias/`, `.github/` e o arquivo
+> `PARTICIPANTE.md` **devem permanecer no projeto** — eles são usados na geração
+> de evidências ao final do workshop.
 
 ---
 
-### **5. Criar as branches de trabalho**
+### **Etapa 5 — Criar as branches de trabalho** 🌿
 
-Com o repositório configurado, crie as branches do time:
+Com o repositório configurado, crie as branches que representam os times:
 
 ```bash
-cd site-participante
+git checkout -b feature/dev     && git push origin feature/dev     && git checkout main
+git checkout -b feature/qa      && git push origin feature/qa      && git checkout main
+git checkout -b feature/suporte && git push origin feature/suporte && git checkout main
+```
 
-git checkout -b feature/dev      && git push origin feature/dev
-git checkout -b feature/qa       && git push origin feature/qa
-git checkout -b feature/suporte  && git push origin feature/suporte
-git checkout main
+Verifique que as três branches foram criadas:
+
+```bash
+git branch -a
 ```
 
 ---
 
-### **6. Estrutura final esperada**
+### **Etapa 6 — Estrutura final esperada** 🗂️
+
+Ao final desta etapa, seu repositório deve ter a seguinte estrutura:
 
 ```
 site-participante/
 ├── .github/
-│   └── workflows/        ← CI/CD (copiado do base)
-├── setup/                ← gerador de evidências
-├── evidencias/           ← HTMLs gerados
-├── PARTICIPANTE.md
-└── <seu site aqui>
+│   └── workflows/        ← CI/CD (pipeline de deploy)
+├── setup/                ← scripts do workshop
+├── evidencias/           ← onde sua evidência será gerada
+├── PARTICIPANTE.md       ← suas informações
+└── <seu site>            ← código do seu projeto
 ```
+
+> ✅ **Checklist rápido antes de avançar:**
+> - [ ] Repositório criado e público no GitHub
+> - [ ] Estrutura base copiada e commitada
+> - [ ] Site rodando localmente
+> - [ ] Branches `feature/dev`, `feature/qa` e `feature/suporte` criadas
 
 ---
 
-### **7. Próximos passos**
+## 🏁 Próximos passos
 
-Após a conclusão de todas as etapas acima, seguiremos com a implementação dos **pilares de Governança**.
+Tudo pronto? Ótimo! 🎉
+
+A partir daqui vamos implementar os **pilares de Governança do Copilot** — um a um —
+e ao final você vai gerar sua evidência de conclusão com o script:
+
+```bash
+python setup/gerar_evidencia.py --nome "Seu Nome" --turma dev
+```
+
+> 🙋 Ficou com alguma dúvida nesta etapa? Chame o instrutor antes de avançar!

@@ -59,9 +59,8 @@ Ou, no VS Code, clique com o botão direito em `index.html` e escolha **Open wit
 
 ## Os 8 Pilares — configure um a um
 
-A pasta `governanca/.github/` contém todos os arquivos prontos.
-**Você vai copiar cada um manualmente** para `.github/` — e entender o que cada
-arquivo faz antes de copiar.
+Os arquivos de governança **já estão configurados** em `.github/`.
+**Explore cada um** para entender o que fazem — esse é o exercício.
 
 ---
 
@@ -73,15 +72,9 @@ arquivo faz antes de copiar.
 **Faça:**
 
 ```bash
-# Cria as pastas necessárias
-mkdir -p .github/instructions
-
-# Copia o arquivo principal de instructions
-cp governanca/.github/copilot-instructions.md .github/copilot-instructions.md
-
-# Copia as instructions específicas por contexto
-cp governanca/.github/instructions/acessibilidade.instructions.md .github/instructions/
-cp governanca/.github/instructions/seo.instructions.md .github/instructions/
+# Os arquivos já existem — explore as pastas:
+ls .github/instructions
+ls .github/
 ```
 
 **Abra os arquivos copiados e leia:**
@@ -109,8 +102,8 @@ o Copilot detecta que o contexto é relevante (ex: ao gerar uma seção do site)
 **Faça:**
 
 ```bash
-mkdir -p .github/skills/gerar-secao
-cp governanca/.github/skills/gerar-secao/SKILL.md .github/skills/gerar-secao/
+# O arquivo já existe — explore:
+ls .github/skills/gerar-secao
 ```
 
 **Leia o `SKILL.md`:** o arquivo tem uma estrutura específica que o Copilot interpreta:
@@ -142,8 +135,8 @@ Você o invoca explicitamente com `@nome-do-agente`.
 **Faça:**
 
 ```bash
-mkdir -p .github/agents
-cp governanca/.github/agents/qa-academia.agent.md .github/agents/
+# O arquivo já existe — explore:
+ls .github/agents
 ```
 
 **Leia o arquivo:** veja a estrutura que todo agente deve ter:
@@ -219,10 +212,9 @@ ações (antes ou depois) e podem injetar mensagens de volta para o agente.
 **Faça:**
 
 ```bash
-mkdir -p .github/hooks/scripts
-cp governanca/.github/hooks/lint-guard.json .github/hooks/
-cp governanca/.github/hooks/scripts/lint-guard.ps1 .github/hooks/scripts/
-cp governanca/.github/hooks/scripts/lint-guard.sh .github/hooks/scripts/
+# Os arquivos já existem — explore:
+ls .github/hooks
+ls .github/hooks/scripts
 ```
 
 **Leia `lint-guard.json`:** note o evento `postToolUse`. Hooks são o único primitivo
@@ -271,9 +263,8 @@ cat docs/wiki/identidade-visual.md     # paleta de cores, tipografia, logo
 cat docs/wiki/conteudo-academia.md     # tom de voz, frases proibidas, público-alvo
 cat docs/wiki/planos-precos.md         # planos, valores, benefícios de cada
 
-# Copia o prompt do Bloco 6
-mkdir -p .github/prompts
-cp governanca/.github/prompts/bloco6-knowledge-base.prompt.md .github/prompts/
+# O prompt do Bloco 6 já existe:
+ls .github/prompts
 ```
 
 **Teste antes de executar o prompt:**

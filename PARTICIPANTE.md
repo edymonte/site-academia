@@ -10,40 +10,7 @@
 
 ## Antes de começar
 
-### 1. Clone e configure o ambiente
-
-```bash
-git clone https://github.com/<seu-usuario>/site-academia.git
-cd site-academia
-
-# Windows:
-setup.bat
-
-# Linux / Mac:
-bash setup.sh
-```
-
-O script verifica e instala automaticamente o que estiver faltando (Python 3, Node.js, gh CLI).
-
-### 2. Faça checkout da branch do seu time
-
-```bash
-# Escolha a branch do seu time:
-git checkout feature/front      # Time Front-End
-git checkout feature/conteudo   # Time Conteúdo
-git checkout feature/devops     # Time DevOps
-```
-
-Leia o arquivo `SQUAD.md` que aparece — ele confirma que você está na branch certa.
-
-### 3. Confirme que o site abre no navegador
-
-```bash
-# Abra o index.html no navegador (ou use o Live Server do VS Code)
-# Você deve ver a página inicial da Academia FitCode com estilo base aplicado
-```
-
-Esse é o estado inicial — com o site funcional mas **sem nenhuma governança do Copilot**.
+> 📖 Siga o guia **[PASSOS-INICIAIS.md](./PASSOS-INICIAIS.md)** para configurar seu ambiente e repositório antes de avançar para os pilares abaixo.
 
 ---
 

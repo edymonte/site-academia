@@ -28,8 +28,14 @@ Antes de começar, verifique se você tem instalado:
 |------------|--------------|----------|
 | **Git** | `git --version` | [git-scm.com](https://git-scm.com/download/win) |
 | **Node.js** | `node --version` | [nodejs.org](https://nodejs.org) |
+| **Python 3** | `python --version` | [python.org](https://www.python.org/downloads/) |
 | **GitHub CLI** | `gh --version` | [cli.github.com](https://cli.github.com) |
 | **VS Code** | — | [code.visualstudio.com](https://code.visualstudio.com) |
+
+> ⚠️ **Python é obrigatório** — será usado para gerar sua evidência de conclusão ao final do workshop:
+> ```bash
+> python setup/gerar_evidencia.py --nome "Seu Nome" --turma dev
+> ```
 
 > 💡 **Dica:** Com o GitHub CLI instalado, autentique-se antes de continuar:
 > ```bash
@@ -74,9 +80,9 @@ Este será o repositório onde você vai desenvolver seu site e aplicar os pilar
 
 > ⚠️ **Substitua `site-participante` pelo nome do seu projeto antes de executar.**
 
-```bash
-gh repo create site-participante --public
-```
+1. Acesse [github.com/new](https://github.com/new) e crie um novo repositório **público**
+2. Dê o nome do seu projeto (ex: `site-participante`)
+3. **Não** inicialize com README — deixe o repositório vazio
 
 Em seguida, clone-o localmente — este será o seu **diretório de trabalho**:
 

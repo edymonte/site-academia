@@ -547,6 +547,98 @@
       border: 1px solid rgba(245,158,11,0.25);
     }
 
+    /* ─── DEPOIMENTOS ──────────────────────────────────────────────── */
+    #depoimentos {
+      background:
+        linear-gradient(180deg, var(--bg) 0%, var(--bg3) 18%, var(--bg3) 82%, var(--bg) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    #depoimentos::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 600px 400px at 20%  60%, rgba(16,185,129,0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 500px 350px at 80%  30%, rgba(0,180,220,0.05)  0%, transparent 65%);
+    }
+    .fc-testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 640px) {
+      .fc-testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 960px) {
+      .fc-testimonials-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .fc-testimonial-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 2rem 1.7rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      position: relative;
+      transition: transform 0.22s, border-color 0.22s, box-shadow 0.22s;
+    }
+    .fc-testimonial-card::before {
+      content: '\201C';
+      position: absolute;
+      top: 1.2rem;
+      right: 1.7rem;
+      font-size: 5rem;
+      line-height: 1;
+      color: var(--green);
+      opacity: 0.18;
+      font-family: Georgia, serif;
+      pointer-events: none;
+    }
+    .fc-testimonial-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(16,185,129,0.28);
+      box-shadow: 0 10px 36px rgba(0,0,0,0.35);
+    }
+    .fc-testimonial-card blockquote {
+      font-size: 0.93rem;
+      color: rgba(240,246,252,0.82);
+      line-height: 1.7;
+      font-style: italic;
+      flex: 1;
+    }
+    .fc-testimonial-footer {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .fc-testimonial-photo {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(16,185,129,0.4);
+      flex-shrink: 0;
+    }
+    .fc-testimonial-info { display: flex; flex-direction: column; gap: 0.15rem; }
+    .fc-testimonial-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .fc-testimonial-role {
+      font-size: 0.75rem;
+      color: var(--green);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
     /* ─── PATROCINADOR — BOA FARMA ───────────────────────────────────── */
     .sponsor-section {
       padding: 4.5rem 2rem;
@@ -710,6 +802,7 @@
     <nav aria-label="Navegação principal">
       <a href="#beneficios">Benefícios</a>
       <a href="#modalidades">Modalidades</a>
+      <a href="#depoimentos">Depoimentos</a>
       <a href="#patrocinador">Parceiro</a>
       <a href="#modalidades" class="nav-cta">Matricule-se</a>
     </nav>
@@ -956,6 +1049,89 @@
             <span class="mod-tag">Defesa & disciplina</span>
           </div>
         </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       DEPOIMENTOS DE ALUNOS
+  ═══════════════════════════════════════════════════════ -->
+  <section id="depoimentos" aria-labelledby="titulo-depoimentos">
+    <div class="container">
+      <p class="section-label">O que dizem nossos alunos</p>
+      <h2 id="titulo-depoimentos" class="section-title">Histórias reais de<br>transformação</h2>
+      <p class="section-sub">
+        Cada história é única. Veja o que nossos alunos conquistaram
+        ao escolher a Academia FitCode.
+      </p>
+      <div class="fc-testimonials-grid">
+
+        <article class="fc-testimonial-card">
+          <blockquote>
+            "Depois de 6 meses na musculação, perdi 14 kg e ganhei disposição que
+             não sentia há anos. Os instrutores fazem toda a diferença — sempre
+             presentes e motivando a superar os limites."
+          </blockquote>
+          <footer class="fc-testimonial-footer">
+            <img
+              class="fc-testimonial-photo"
+              src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=104&h=104&fit=crop&crop=face&auto=format"
+              alt="Retrato de Carlos Souza, aluno de musculação da Academia FitCode"
+              width="52"
+              height="52"
+              loading="lazy"
+            >
+            <div class="fc-testimonial-info">
+              <span class="fc-testimonial-name">Carlos Souza</span>
+              <span class="fc-testimonial-role">Aluno de Musculação · 6 meses</span>
+            </div>
+          </footer>
+        </article>
+
+        <article class="fc-testimonial-card">
+          <blockquote>
+            "Comecei o yoga sem nunca ter praticado na vida. Em três meses,
+             minha ansiedade diminuiu muito e minha postura melhorou
+             visivelmente. Me arrependo só de não ter começado antes!"
+          </blockquote>
+          <footer class="fc-testimonial-footer">
+            <img
+              class="fc-testimonial-photo"
+              src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=104&h=104&fit=crop&crop=face&auto=format"
+              alt="Retrato de Ana Lima, aluna de yoga da Academia FitCode"
+              width="52"
+              height="52"
+              loading="lazy"
+            >
+            <div class="fc-testimonial-info">
+              <span class="fc-testimonial-name">Ana Lima</span>
+              <span class="fc-testimonial-role">Aluna de Yoga · 3 meses</span>
+            </div>
+          </footer>
+        </article>
+
+        <article class="fc-testimonial-card">
+          <blockquote>
+            "A natação transformou minha saúde. Tenho 52 anos e nunca me
+             senti tão bem. As aulas são inclusivas, o ambiente é incrível
+             e os professores são altamente qualificados."
+          </blockquote>
+          <footer class="fc-testimonial-footer">
+            <img
+              class="fc-testimonial-photo"
+              src="https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?w=104&h=104&fit=crop&crop=face&auto=format"
+              alt="Retrato de Marcos Oliveira, aluno de natação da Academia FitCode"
+              width="52"
+              height="52"
+              loading="lazy"
+            >
+            <div class="fc-testimonial-info">
+              <span class="fc-testimonial-name">Marcos Oliveira</span>
+              <span class="fc-testimonial-role">Aluno de Natação · 1 ano</span>
+            </div>
+          </footer>
+        </article>
 
       </div>
     </div>

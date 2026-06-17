@@ -589,6 +589,13 @@
       position: relative;
       transition: transform 0.22s, border-color 0.22s, box-shadow 0.22s;
     }
+    .fc-testimonial-card figure {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin: 0;
+      flex: 1;
+    }
     .fc-testimonial-card::before {
       content: '\201C';
       position: absolute;
@@ -612,6 +619,7 @@
       line-height: 1.7;
       font-style: italic;
       flex: 1;
+      margin: 0;
     }
     .fc-testimonial-footer {
       display: flex;
@@ -1068,69 +1076,75 @@
       <div class="fc-testimonials-grid">
 
         <article class="fc-testimonial-card">
-          <blockquote>
-            "Depois de 6 meses na musculação, perdi 14 kg e ganhei disposição que
-             não sentia há anos. Os instrutores fazem toda a diferença — sempre
-             presentes e motivando a superar os limites."
-          </blockquote>
-          <footer class="fc-testimonial-footer">
-            <img
-              class="fc-testimonial-photo"
-              src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=104&h=104&fit=crop&crop=face&auto=format"
-              alt="Retrato de Carlos Souza, aluno de musculação da Academia FitCode"
-              width="52"
-              height="52"
-              loading="lazy"
-            >
-            <div class="fc-testimonial-info">
-              <span class="fc-testimonial-name">Carlos Souza</span>
-              <span class="fc-testimonial-role">Aluno de Musculação · 6 meses</span>
-            </div>
-          </footer>
+          <figure>
+            <blockquote>
+              "Depois de 6 meses na musculação, perdi 14 kg e ganhei disposição que
+               não sentia há anos. Os instrutores fazem toda a diferença — sempre
+               presentes e motivando a superar os limites."
+            </blockquote>
+            <figcaption class="fc-testimonial-footer">
+              <img
+                class="fc-testimonial-photo"
+                src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=104&h=104&fit=crop&crop=face&auto=format"
+                alt="Retrato de Carlos Souza, aluno de musculação da Academia FitCode"
+                width="52"
+                height="52"
+                loading="lazy"
+              >
+              <div class="fc-testimonial-info">
+                <span class="fc-testimonial-name">Carlos Souza</span>
+                <span class="fc-testimonial-role">Aluno de Musculação · 6 meses</span>
+              </div>
+            </figcaption>
+          </figure>
         </article>
 
         <article class="fc-testimonial-card">
-          <blockquote>
-            "Comecei o yoga sem nunca ter praticado na vida. Em três meses,
-             minha ansiedade diminuiu muito e minha postura melhorou
-             visivelmente. Me arrependo só de não ter começado antes!"
-          </blockquote>
-          <footer class="fc-testimonial-footer">
-            <img
-              class="fc-testimonial-photo"
-              src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=104&h=104&fit=crop&crop=face&auto=format"
-              alt="Retrato de Ana Lima, aluna de yoga da Academia FitCode"
-              width="52"
-              height="52"
-              loading="lazy"
-            >
-            <div class="fc-testimonial-info">
-              <span class="fc-testimonial-name">Ana Lima</span>
-              <span class="fc-testimonial-role">Aluna de Yoga · 3 meses</span>
-            </div>
-          </footer>
+          <figure>
+            <blockquote>
+              "Comecei o yoga sem nunca ter praticado na vida. Em três meses,
+               minha ansiedade diminuiu muito e minha postura melhorou
+               visivelmente. Me arrependo só de não ter começado antes!"
+            </blockquote>
+            <figcaption class="fc-testimonial-footer">
+              <img
+                class="fc-testimonial-photo"
+                src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=104&h=104&fit=crop&crop=face&auto=format"
+                alt="Retrato de Ana Lima, aluna de yoga da Academia FitCode"
+                width="52"
+                height="52"
+                loading="lazy"
+              >
+              <div class="fc-testimonial-info">
+                <span class="fc-testimonial-name">Ana Lima</span>
+                <span class="fc-testimonial-role">Aluna de Yoga · 3 meses</span>
+              </div>
+            </figcaption>
+          </figure>
         </article>
 
         <article class="fc-testimonial-card">
-          <blockquote>
-            "A natação transformou minha saúde. Tenho 52 anos e nunca me
-             senti tão bem. As aulas são inclusivas, o ambiente é incrível
-             e os professores são altamente qualificados."
-          </blockquote>
-          <footer class="fc-testimonial-footer">
-            <img
-              class="fc-testimonial-photo"
-              src="https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?w=104&h=104&fit=crop&crop=face&auto=format"
-              alt="Retrato de Marcos Oliveira, aluno de natação da Academia FitCode"
-              width="52"
-              height="52"
-              loading="lazy"
-            >
-            <div class="fc-testimonial-info">
-              <span class="fc-testimonial-name">Marcos Oliveira</span>
-              <span class="fc-testimonial-role">Aluno de Natação · 1 ano</span>
-            </div>
-          </footer>
+          <figure>
+            <blockquote>
+              "A natação transformou minha saúde. Tenho 52 anos e nunca me
+               senti tão bem. As aulas são inclusivas, o ambiente é incrível
+               e os professores são altamente qualificados."
+            </blockquote>
+            <figcaption class="fc-testimonial-footer">
+              <img
+                class="fc-testimonial-photo"
+                src="https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?w=104&h=104&fit=crop&crop=face&auto=format"
+                alt="Retrato de Marcos Oliveira, aluno de natação da Academia FitCode"
+                width="52"
+                height="52"
+                loading="lazy"
+              >
+              <div class="fc-testimonial-info">
+                <span class="fc-testimonial-name">Marcos Oliveira</span>
+                <span class="fc-testimonial-role">Aluno de Natação · 1 ano</span>
+              </div>
+            </figcaption>
+          </figure>
         </article>
 
       </div>

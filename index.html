@@ -653,6 +653,95 @@
       box-shadow: 0 0 28px rgba(16,185,129,0.45);
     }
 
+    /* ─── DEPOIMENTOS ───────────────────────────────────────────────── */
+    #depoimentos {
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 18%, var(--bg2) 82%, var(--bg) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    #depoimentos::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 700px 400px at 100% 0%,   rgba(16,185,129,0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 500px 300px at 0%   100%, rgba(5,150,105,0.05)  0%, transparent 65%);
+    }
+    .fc-testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.4rem;
+    }
+    @media (min-width: 640px) {
+      .fc-testimonials-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .fc-testimonial-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 2rem 1.7rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.22s, border-color 0.22s, box-shadow 0.22s;
+    }
+    .fc-testimonial-card::before {
+      content: '\201C';
+      position: absolute;
+      top: 0.6rem;
+      right: 1.4rem;
+      font-size: 5rem;
+      line-height: 1;
+      color: rgba(16,185,129,0.10);
+      font-family: Georgia, serif;
+      pointer-events: none;
+      user-select: none;
+    }
+    .fc-testimonial-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(16,185,129,0.28);
+      box-shadow: 0 10px 36px rgba(0,0,0,0.35);
+    }
+    .fc-testimonial-body { flex: 1; }
+    .fc-testimonial-body blockquote { margin: 0; border: none; padding: 0; }
+    .fc-testimonial-body blockquote p {
+      font-size: 0.95rem;
+      line-height: 1.72;
+      color: rgba(240,246,252,0.82);
+      font-style: italic;
+    }
+    .fc-testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border);
+    }
+    .fc-testimonial-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(16,185,129,0.35);
+      flex-shrink: 0;
+    }
+    .fc-testimonial-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.15rem;
+    }
+    .fc-testimonial-detail {
+      display: block;
+      font-size: 0.73rem;
+      color: var(--green);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
     /* ─── FOOTER ────────────────────────────────────────────────────── */
     footer {
       background: linear-gradient(180deg, #070a0f 0%, #040609 100%);
@@ -710,6 +799,7 @@
     <nav aria-label="Navegação principal">
       <a href="#beneficios">Benefícios</a>
       <a href="#modalidades">Modalidades</a>
+      <a href="#depoimentos">Depoimentos</a>
       <a href="#patrocinador">Parceiro</a>
       <a href="#modalidades" class="nav-cta">Matricule-se</a>
     </nav>
@@ -956,6 +1046,92 @@
             <span class="mod-tag">Defesa & disciplina</span>
           </div>
         </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       DEPOIMENTOS
+  ═══════════════════════════════════════════════════════ -->
+  <section id="depoimentos" aria-labelledby="titulo-depoimentos">
+    <div class="container">
+      <p class="section-label">O que dizem nossos alunos</p>
+      <h2 id="titulo-depoimentos" class="section-title">Histórias reais de<br>transformação</h2>
+      <p class="section-sub">
+        Cada conquista começa com uma decisão. Conheça quem já deu esse passo
+        e nunca mais voltou atrás.
+      </p>
+      <div class="fc-testimonials-grid">
+
+        <article class="fc-testimonial-card">
+          <div class="fc-testimonial-body">
+            <blockquote>
+              <p>"Nunca imaginei que conseguiria transformar meu corpo assim.
+                 Em 18 meses de musculação na FitCode, perdi 12 kg e ganhei
+                 uma confiança que mudou minha vida profissional e pessoal."</p>
+            </blockquote>
+          </div>
+          <footer class="fc-testimonial-author">
+            <img
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face"
+              alt="Foto de Mariana Costa, aluna de musculação na Academia FitCode"
+              width="52"
+              height="52"
+              loading="lazy"
+              class="fc-testimonial-avatar">
+            <div class="fc-testimonial-info">
+              <h3 class="fc-testimonial-name">Mariana Costa</h3>
+              <span class="fc-testimonial-detail">Musculação · 1 ano e meio</span>
+            </div>
+          </footer>
+        </article>
+
+        <article class="fc-testimonial-card">
+          <div class="fc-testimonial-body">
+            <blockquote>
+              <p>"O CrossFit aqui é diferente. Os instrutores te desafiam no
+                 limite certo, a comunidade te empurra para frente e os resultados
+                 chegam rápido. Indico para quem quer evolução de verdade."</p>
+            </blockquote>
+          </div>
+          <footer class="fc-testimonial-author">
+            <img
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face"
+              alt="Foto de Rafael Mendes, aluno de CrossFit na Academia FitCode"
+              width="52"
+              height="52"
+              loading="lazy"
+              class="fc-testimonial-avatar">
+            <div class="fc-testimonial-info">
+              <h3 class="fc-testimonial-name">Rafael Mendes</h3>
+              <span class="fc-testimonial-detail">CrossFit · 8 meses</span>
+            </div>
+          </footer>
+        </article>
+
+        <article class="fc-testimonial-card">
+          <div class="fc-testimonial-body">
+            <blockquote>
+              <p>"Comecei com a natação por causa da minha coluna e me apaixonei
+                 pelo yoga também. A FitCode virou meu segundo lar. Minha saúde
+                 mental e física nunca foram tão boas quanto agora."</p>
+            </blockquote>
+          </div>
+          <footer class="fc-testimonial-author">
+            <img
+              src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&fit=crop&crop=face"
+              alt="Foto de Juliana Andrade, aluna de natação e yoga na Academia FitCode"
+              width="52"
+              height="52"
+              loading="lazy"
+              class="fc-testimonial-avatar">
+            <div class="fc-testimonial-info">
+              <h3 class="fc-testimonial-name">Juliana Andrade</h3>
+              <span class="fc-testimonial-detail">Natação &amp; Yoga · 3 anos</span>
+            </div>
+          </footer>
+        </article>
 
       </div>
     </div>

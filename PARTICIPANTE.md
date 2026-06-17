@@ -1,7 +1,7 @@
 # 🏆 Challenge — GitHub Copilot Platform Extensibility
 ## Academia FitCode · Workshop Fase 2
 
-> **Objetivo:** criar um site ao vivo, publicá-lo em repositório público e configurar
+> **Objetivo:** criar um site funcional localmente e configurar
 > os 8 pilares de governança do Copilot — um a um, entendendo o que cada um faz.
 >
 > O challenge termina quando você rodar `gerar_evidencia.py` e ver **8/8 pilares** no HTML.
@@ -10,40 +10,7 @@
 
 ## Antes de começar
 
-### 1. Clone e configure o ambiente
-
-```bash
-git clone https://github.com/<seu-usuario>/site-academia.git
-cd site-academia
-
-# Windows:
-setup.bat
-
-# Linux / Mac:
-bash setup.sh
-```
-
-O script verifica e instala automaticamente o que estiver faltando (Python 3, Node.js, gh CLI).
-
-### 2. Faça checkout da branch do seu time
-
-```bash
-# Escolha a branch do seu time:
-git checkout feature/front      # Time Front-End
-git checkout feature/conteudo   # Time Conteúdo
-git checkout feature/devops     # Time DevOps
-```
-
-Leia o arquivo `SQUAD.md` que aparece — ele confirma que você está na branch certa.
-
-### 3. Confirme que o site abre no navegador
-
-```bash
-# Abra o index.html no navegador (ou use o Live Server do VS Code)
-# Você deve ver a página inicial da Academia FitCode com estilo base aplicado
-```
-
-Esse é o estado inicial — com o site funcional mas **sem nenhuma governança do Copilot**.
+> 📖 Siga o guia **[PASSOS-INICIAIS.md](./PASSOS-INICIAIS.md)** para configurar seu ambiente e repositório antes de avançar para os pilares abaixo.
 
 ---
 
@@ -71,31 +38,22 @@ Salve o resultado em `src/sections/sobre.html`.
 
 ---
 
-## Passo 1 — Publique no GitHub Pages
+## Passo 1 — Abra o site no navegador
 
-> Antes de aplicar governança, o site já deve estar ao vivo. Assim os participantes
-> veem o impacto de cada pilar diretamente na URL pública.
+> Antes de aplicar governança, confirme que o site abre corretamente no navegador.
 
 ```bash
-# Crie o repositório público no GitHub
-gh repo create site-academia --public --source=. --push
+# Abra o index.html diretamente no navegador
+# Windows:
+start index.html
 
-# Ative o GitHub Pages via CLI
-gh api repos/{owner}/{repo}/pages \
-  --method POST \
-  --field source[branch]=main \
-  --field source[path]=/
+# Linux / Mac:
+open index.html
 ```
 
-Ou acesse **github.com → seu repo → Settings → Pages → Source: main / root**.
+Ou, no VS Code, clique com o botão direito em `index.html` e escolha **Open with Live Server** (recomendado — atualiza automaticamente ao salvar).
 
-Aguarde ~30 segundos. Seu site estará em:
-```
-https://<seu-usuario>.github.io/site-academia/
-```
-
-> 💡 Guarde esta URL — você vai acompanhar as mudanças ao vivo conforme aplica
-> cada pilar de governança.
+> 💡 Você vai acompanhar as mudanças visualmente conforme aplica cada pilar de governança.
 
 ---
 
@@ -484,11 +442,11 @@ que você criou.
 - [ ] Clonei o repo e rodei `setup.bat` / `setup.sh`
 - [ ] Fiz checkout da minha branch (`feature/front|conteudo|devops`)
 - [ ] Gerei a seção inicial do site com o Copilot (Passo 0)
-- [ ] Publiquei o site no GitHub Pages (Passo 1)
+- [ ] Confirmei que o site abre corretamente no navegador (Passo 1)
 - [ ] Copiei e li cada arquivo de governança de `governanca/.github/`
 - [ ] Executei os Blocos 1 a 8
 - [ ] O Copilot abriu o PR automaticamente no Bloco 7 (Coding Agent)
 - [ ] Rodei `gerar_evidencia.py` e obtive 8/8 pilares
 - [ ] Tirei o screenshot do HTML
 - [ ] Revisei e aprovei o PR aberto pelo Copilot
-- [ ] O site está ao vivo em `https://<usuario>.github.io/site-academia/`
+- [ ] O site abre corretamente no navegador local

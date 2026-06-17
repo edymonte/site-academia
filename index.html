@@ -33,6 +33,28 @@
       overflow-x: hidden;
     }
 
+    /* ─── FUNDO GLOBAL — MESH GRADIENT ANIMADO ──────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 80vw 60vh at 10% 20%,  rgba(16,185,129,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 70vw 50vh at 90% 80%,  rgba(5,150,105,0.06)  0%, transparent 60%),
+        radial-gradient(ellipse 60vw 80vh at 50% 50%,  rgba(0,212,255,0.03)  0%, transparent 55%),
+        radial-gradient(ellipse 40vw 40vh at 75% 15%,  rgba(245,158,11,0.04) 0%, transparent 55%);
+      animation: fc-mesh-drift 18s ease-in-out infinite alternate;
+    }
+    @keyframes fc-mesh-drift {
+      0%   { background-position: 0% 0%, 100% 100%, 50% 50%, 75% 15%; }
+      33%  { background-position: 15% 10%, 85% 90%, 40% 60%, 60% 25%; }
+      66%  { background-position: 5% 20%, 95% 75%, 55% 45%, 80% 10%; }
+      100% { background-position: 20% 5%,  80% 95%, 45% 55%, 70% 20%; }
+    }
+    body > * { position: relative; z-index: 1; }
+
     /* ─── HEADER ────────────────────────────────────────────────────────── */
     header {
       position: fixed;
@@ -410,7 +432,21 @@
     }
 
     /* ─── BENEFÍCIOS ────────────────────────────────────────────────── */
-    #beneficios { background: var(--bg2); }
+    #beneficios {
+      background:
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 18%, var(--bg2) 82%, var(--bg) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    #beneficios::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 700px 400px at 0%   30%, rgba(16,185,129,0.09) 0%, transparent 65%),
+        radial-gradient(ellipse 500px 300px at 100% 70%, rgba(245,158,11,0.06) 0%, transparent 65%);
+    }
     .benefits-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -445,7 +481,20 @@
     .benefit-stat-label { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.06em; margin-top: 0.2rem; }
 
     /* ─── MODALIDADES ───────────────────────────────────────────────── */
-    #modalidades { background: var(--bg); }
+    #modalidades {
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+    #modalidades::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 600px 500px at 100% 20%, rgba(16,185,129,0.08) 0%, transparent 65%),
+        radial-gradient(ellipse 500px 400px at 0%   80%, rgba(0,180,220,0.05)  0%, transparent 65%);
+    }
     .modalities-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -606,11 +655,18 @@
 
     /* ─── FOOTER ────────────────────────────────────────────────────── */
     footer {
-      background: #070a0f;
-      padding: 3rem 2rem;
-      text-align: center;
-      border-top: 1px solid var(--border);
+      background: linear-gradient(180deg, #070a0f 0%, #040609 100%);
+      position: relative;
+      overflow: hidden;
     }
+    footer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse 60% 80% at 50% 120%, rgba(16,185,129,0.07) 0%, transparent 65%);
+    }
+    footer > * { position: relative; z-index: 1; }
     .footer-logo {
       font-size: 1.3rem;
       font-weight: 900;

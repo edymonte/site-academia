@@ -9,3 +9,6 @@ __pycache__/
 *.pyc
 *.pyo
 .env
+
+# Prompts de uso local — não versionar
+prompts-validacao-pilares.md

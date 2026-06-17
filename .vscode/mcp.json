@@ -18,7 +18,7 @@
     },
     "precos-fitcode": {
       "type": "stdio",
-      "command": "node",
+      "command": "C:\\Program Files\\nodejs\\node.exe",
       "args": ["${workspaceFolder}/mcp-precos/index.js"],
       "description": "Tabela de preços oficial da Academia FitCode. Use as tools 'consultar_precos' e 'consultar_pacotes' sempre que o usuário perguntar sobre valores, mensalidades ou planos. Nunca busque preços na internet."
     }

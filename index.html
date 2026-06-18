@@ -547,6 +547,66 @@
       border: 1px solid rgba(245,158,11,0.25);
     }
 
+    /* ─── DEPOIMENTOS ───────────────────────────────────────────────── */
+    #depoimentos {
+      background:
+        linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    #depoimentos::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 520px 320px at 0% 20%, rgba(16,185,129,0.09) 0%, transparent 65%),
+        radial-gradient(ellipse 460px 280px at 100% 75%, rgba(0,180,220,0.05) 0%, transparent 65%);
+    }
+    .fc-testimonials-grid {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      padding: 0;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .fc-testimonial-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.4rem;
+      display: flex;
+      gap: 0.95rem;
+      align-items: flex-start;
+      transition: transform 0.22s, border-color 0.22s, box-shadow 0.22s;
+    }
+    .fc-testimonial-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(16,185,129,0.3);
+      box-shadow: 0 10px 36px rgba(0,0,0,0.35);
+    }
+    .fc-testimonial-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(16,185,129,0.28);
+      flex-shrink: 0;
+    }
+    .fc-testimonial-name {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .fc-testimonial-text {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.62;
+    }
+
     /* ─── PATROCINADOR — BOA FARMA ───────────────────────────────────── */
     .sponsor-section {
       padding: 4.5rem 2rem;
@@ -697,6 +757,12 @@
       .sponsor-logo  { justify-content: center; }
       .sponsor-highlight { text-align: left; }
       .modalities-grid { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 720px) {
+      .fc-testimonials-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1040px) {
+      .fc-testimonials-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
   </style>
 </head>
@@ -958,6 +1024,70 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       DEPOIMENTOS
+  ═══════════════════════════════════════════════════════ -->
+  <section id="depoimentos" aria-labelledby="titulo-depoimentos">
+    <div class="container">
+      <p class="section-label">Histórias reais</p>
+      <h2 id="titulo-depoimentos" class="section-title">Depoimentos de alunos</h2>
+      <p class="section-sub">
+        Resultados que vão além do físico: mais energia, autoestima e constância na rotina.
+        Conheça quem já transformou hábitos com a Academia FitCode.
+      </p>
+      <ul class="fc-testimonials-grid" role="list">
+        <li>
+          <article class="fc-testimonial-card" aria-labelledby="depoimento-mariana">
+            <img
+              class="fc-testimonial-avatar"
+              src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&h=200&q=80"
+              alt="Mariana sorrindo após treino funcional na academia"
+              width="72"
+              height="72"
+              loading="lazy"
+            >
+            <div>
+              <h3 id="depoimento-mariana" class="fc-testimonial-name">Mariana Souza</h3>
+              <p class="fc-testimonial-text">“Eu cheguei sem condicionamento e hoje consigo treinar com segurança e confiança. O acompanhamento da equipe fez toda diferença na minha consistência.”</p>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="fc-testimonial-card" aria-labelledby="depoimento-carlos">
+            <img
+              class="fc-testimonial-avatar"
+              src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&h=200&q=80"
+              alt="Carlos durante recuperação pós-treino de musculação"
+              width="72"
+              height="72"
+              loading="lazy"
+            >
+            <div>
+              <h3 id="depoimento-carlos" class="fc-testimonial-name">Carlos Mendes</h3>
+              <p class="fc-testimonial-text">“Em três meses reduzi dores nas costas e ganhei mais disposição para trabalhar. O plano de treino personalizado me manteve motivado do começo ao fim.”</p>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="fc-testimonial-card" aria-labelledby="depoimento-ana">
+            <img
+              class="fc-testimonial-avatar"
+              src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=200&h=200&q=80"
+              alt="Ana comemorando evolução nas aulas de yoga"
+              width="72"
+              height="72"
+              loading="lazy"
+            >
+            <div>
+              <h3 id="depoimento-ana" class="fc-testimonial-name">Ana Pereira</h3>
+              <p class="fc-testimonial-text">“Além de melhorar minha flexibilidade, passei a dormir melhor e reduzir o estresse. Hoje treinar é uma parte essencial do meu dia.”</p>
+            </div>
+          </article>
+        </li>
+      </ul>
     </div>
   </section>
 

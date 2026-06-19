@@ -7,6 +7,11 @@
   <meta property="og:image" content="https://edymonte.github.io/site-academia/og-image.jpg">
   <meta property="og:title" content="Academia FitCode — Transforme Seu Corpo, Liberte Sua Mente">
   <meta property="og:description" content="Academia FitCode — descubra os benefícios do esporte e escolha sua modalidade.">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:locale:alternate" content="en_US">
+  <link rel="alternate" hreflang="pt-BR" href="https://edymonte.github.io/site-academia/">
+  <link rel="alternate" hreflang="en" href="https://edymonte.github.io/site-academia/">
+  <link rel="alternate" hreflang="x-default" href="https://edymonte.github.io/site-academia/">
   <title>Academia FitCode — Transforme Seu Corpo, Liberte Sua Mente</title>
   <style>
     /* ─── Variáveis & Reset ─────────────────────────────────────────────── */
@@ -780,6 +785,47 @@
       .modalities-grid { grid-template-columns: 1fr; }
       .fc-depoimentos-grid { grid-template-columns: 1fr; }
     }
+
+    /* ─── SELETOR DE IDIOMA / LANGUAGE SWITCHER ─────────────── */
+    .fc-lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 0.15rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.2rem;
+      flex-shrink: 0;
+    }
+    .fc-lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 0.25rem 0.55rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: color 0.2s, background 0.2s;
+      line-height: 1;
+    }
+    .fc-lang-btn:hover {
+      color: var(--text);
+      background: rgba(255,255,255,0.08);
+    }
+    .fc-lang-btn--active {
+      background: var(--green);
+      color: #fff;
+    }
+    .fc-lang-btn--active:hover {
+      background: var(--green-dark);
+      color: #fff;
+    }
+    .fc-lang-btn:focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 2px;
+    }
   </style>
 </head>
 <body>
@@ -789,13 +835,17 @@
   ═══════════════════════════════════════════════════════ -->
   <header>
     <div class="logo">Fit<span>Code</span></div>
-    <nav aria-label="Navegação principal">
-      <a href="#beneficios">Benefícios</a>
-      <a href="#modalidades">Modalidades</a>
-      <a href="#depoimentos">Depoimentos</a>
-      <a href="#patrocinador">Parceiro</a>
-      <a href="#modalidades" class="nav-cta">Matricule-se</a>
+    <nav aria-label="Navegação principal" data-i18n-aria="nav-main">
+      <a href="#beneficios" data-i18n="nav-beneficios">Benefícios</a>
+      <a href="#modalidades" data-i18n="nav-modalidades">Modalidades</a>
+      <a href="#depoimentos" data-i18n="nav-depoimentos">Depoimentos</a>
+      <a href="#patrocinador" data-i18n="nav-parceiro">Parceiro</a>
+      <a href="#modalidades" class="nav-cta" data-i18n="nav-cta">Matricule-se</a>
     </nav>
+    <div class="fc-lang-switcher" role="group" aria-label="Selecionar idioma / Select language">
+      <button class="fc-lang-btn fc-lang-btn--active" lang="pt-BR" aria-pressed="true" data-lang="pt-BR" aria-label="Português do Brasil">PT</button>
+      <button class="fc-lang-btn" lang="en" aria-pressed="false" data-lang="en" aria-label="English">EN</button>
+    </div>
   </header>
 
   <main id="conteudo-principal">
@@ -897,19 +947,19 @@
 
     <!-- Conteúdo sobreposto -->
     <div class="hero-content">
-      <div class="hero-badge">&#9679; Transformação Real</div>
-      <h1 id="titulo-hero">Seu corpo é capaz de<br><em>muito mais</em> do que<br>você imagina</h1>
-      <p>Ciência e movimento unidos para transformar sua saúde, sua mente e sua vida.
+      <div class="hero-badge" data-i18n="hero-badge">&#9679; Transformação Real</div>
+      <h1 id="titulo-hero" data-i18n="hero-h1">Seu corpo é capaz de<br><em>muito mais</em> do que<br>você imagina</h1>
+      <p data-i18n="hero-p">Ciência e movimento unidos para transformar sua saúde, sua mente e sua vida.
          Descubra como praticar esporte muda tudo — de dentro para fora.</p>
       <div class="hero-btns">
-        <a href="#modalidades" class="btn-primary">Ver Modalidades</a>
-        <a href="#beneficios"  class="btn-outline">Por que se exercitar?</a>
+        <a href="#modalidades" class="btn-primary" data-i18n="hero-btn-primary">Ver Modalidades</a>
+        <a href="#beneficios"  class="btn-outline" data-i18n="hero-btn-outline">Por que se exercitar?</a>
       </div>
     </div>
 
     <!-- Scroll hint -->
     <div class="scroll-hint">
-      <span>Explore</span>
+      <span data-i18n="hero-scroll">Explore</span>
       <div class="scroll-arrow"></div>
     </div>
   </section>
@@ -919,9 +969,9 @@
   ═══════════════════════════════════════════════════════ -->
   <section id="beneficios" aria-labelledby="titulo-beneficios">
     <div class="container">
-      <p class="section-label">Por que se exercitar</p>
-      <h2 id="titulo-beneficios" class="section-title">Benefícios comprovados<br>pela ciência</h2>
-      <p class="section-sub">
+      <p class="section-label" data-i18n="benefits-label">Por que se exercitar</p>
+      <h2 id="titulo-beneficios" class="section-title" data-i18n="benefits-title">Benefícios comprovados<br>pela ciência</h2>
+      <p class="section-sub" data-i18n="benefits-sub">
         Praticar esporte regularmente é a decisão mais impactante que você pode tomar
         pela sua saúde — física e mental.
       </p>
@@ -929,38 +979,38 @@
 
         <div class="benefit-card">
           <span class="benefit-icon">❤️</span>
-          <h3>Saúde Cardiovascular</h3>
-          <p>O exercício fortalece o coração, reduz a pressão arterial e diminui
+          <h3 data-i18n="benefit-cardio-title">Saúde Cardiovascular</h3>
+          <p data-i18n="benefit-cardio-p">O exercício fortalece o coração, reduz a pressão arterial e diminui
              significativamente o risco de doenças cardíacas.</p>
           <div class="benefit-stat">35%</div>
-          <div class="benefit-stat-label">de redução no risco cardíaco</div>
+          <div class="benefit-stat-label" data-i18n="benefit-cardio-stat-label">de redução no risco cardíaco</div>
         </div>
 
         <div class="benefit-card">
           <span class="benefit-icon">🧠</span>
-          <h3>Bem-estar Mental</h3>
-          <p>Atividade física libera endorfinas e serotonina, combatendo ansiedade,
+          <h3 data-i18n="benefit-mental-title">Bem-estar Mental</h3>
+          <p data-i18n="benefit-mental-p">Atividade física libera endorfinas e serotonina, combatendo ansiedade,
              depressão e melhorando o sono profundamente.</p>
           <div class="benefit-stat">+47%</div>
-          <div class="benefit-stat-label">de melhora no humor</div>
+          <div class="benefit-stat-label" data-i18n="benefit-mental-stat-label">de melhora no humor</div>
         </div>
 
         <div class="benefit-card">
           <span class="benefit-icon">💪</span>
-          <h3>Força & Longevidade</h3>
-          <p>Músculos mais fortes protegem articulações, melhoram a postura e
+          <h3 data-i18n="benefit-strength-title">Força &amp; Longevidade</h3>
+          <p data-i18n="benefit-strength-p">Músculos mais fortes protegem articulações, melhoram a postura e
              aumentam a qualidade de vida por décadas.</p>
           <div class="benefit-stat">+12</div>
-          <div class="benefit-stat-label">anos a mais de vida ativa</div>
+          <div class="benefit-stat-label" data-i18n="benefit-strength-stat-label">anos a mais de vida ativa</div>
         </div>
 
         <div class="benefit-card">
           <span class="benefit-icon">🤝</span>
-          <h3>Comunidade & Motivação</h3>
-          <p>Treinar junto cria laços reais. Nossa comunidade mantém você motivado
+          <h3 data-i18n="benefit-community-title">Comunidade &amp; Motivação</h3>
+          <p data-i18n="benefit-community-p">Treinar junto cria laços reais. Nossa comunidade mantém você motivado
              nos dias difíceis e celebra cada conquista.</p>
           <div class="benefit-stat">2×</div>
-          <div class="benefit-stat-label">mais consistência em grupo</div>
+          <div class="benefit-stat-label" data-i18n="benefit-community-stat-label">mais consistência em grupo</div>
         </div>
 
       </div>
@@ -972,9 +1022,9 @@
   ═══════════════════════════════════════════════════════ -->
   <section id="modalidades" aria-labelledby="titulo-modalidades">
     <div class="container">
-      <p class="section-label">O que oferecemos</p>
-      <h2 id="titulo-modalidades" class="section-title">Escolha sua<br>modalidade</h2>
-      <p class="section-sub">
+      <p class="section-label" data-i18n="mod-label">O que oferecemos</p>
+      <h2 id="titulo-modalidades" class="section-title" data-i18n="mod-title">Escolha sua<br>modalidade</h2>
+      <p class="section-sub" data-i18n="mod-sub">
         Seis modalidades, um objetivo: encontrar o movimento que vai mudar
         a sua vida e que você vai amar praticar todo dia.
       </p>
@@ -983,60 +1033,60 @@
         <div class="modality-card">
           <div class="mod-icon">🏋️</div>
           <div class="mod-info">
-            <h3>Musculação</h3>
-            <p>Ganho de massa muscular, definição e força com acompanhamento
+            <h3 data-i18n="mod-musculacao-title">Musculação</h3>
+            <p data-i18n="mod-musculacao-p">Ganho de massa muscular, definição e força com acompanhamento
                individualizado de instrutores certificados.</p>
-            <span class="mod-tag">Todos os níveis</span>
+            <span class="mod-tag" data-i18n="mod-musculacao-tag">Todos os níveis</span>
           </div>
         </div>
 
         <div class="modality-card">
           <div class="mod-icon">🏊</div>
           <div class="mod-info">
-            <h3>Natação</h3>
-            <p>O exercício mais completo do mundo. Trabalha todos os grupos musculares
+            <h3 data-i18n="mod-natacao-title">Natação</h3>
+            <p data-i18n="mod-natacao-p">O exercício mais completo do mundo. Trabalha todos os grupos musculares
                sem impacto nas articulações — ideal para todas as idades.</p>
-            <span class="mod-tag">Zero impacto</span>
+            <span class="mod-tag" data-i18n="mod-natacao-tag">Zero impacto</span>
           </div>
         </div>
 
         <div class="modality-card">
           <div class="mod-icon">🧘</div>
           <div class="mod-info">
-            <h3>Yoga</h3>
-            <p>Flexibilidade, equilíbrio e mindfulness em harmonia. Reduza o estresse
+            <h3 data-i18n="mod-yoga-title">Yoga</h3>
+            <p data-i18n="mod-yoga-p">Flexibilidade, equilíbrio e mindfulness em harmonia. Reduza o estresse
                e melhore a conexão corpo-mente com nossas instrutoras especializadas.</p>
-            <span class="mod-tag">Anti-estresse</span>
+            <span class="mod-tag" data-i18n="mod-yoga-tag">Anti-estresse</span>
           </div>
         </div>
 
         <div class="modality-card">
           <div class="mod-icon">🔥</div>
           <div class="mod-info">
-            <h3>CrossFit</h3>
-            <p>Alta intensidade, resultados acelerados. Treinamento funcional em
+            <h3 data-i18n="mod-crossfit-title">CrossFit</h3>
+            <p data-i18n="mod-crossfit-p">Alta intensidade, resultados acelerados. Treinamento funcional em
                comunidade com foco em performance e superação de limites.</p>
-            <span class="mod-tag">Alta intensidade</span>
+            <span class="mod-tag" data-i18n="mod-crossfit-tag">Alta intensidade</span>
           </div>
         </div>
 
         <div class="modality-card">
           <div class="mod-icon">🏃</div>
           <div class="mod-info">
-            <h3>Corrida</h3>
-            <p>Assessoria de corrida com planilhas periodizadas para quem quer
+            <h3 data-i18n="mod-corrida-title">Corrida</h3>
+            <p data-i18n="mod-corrida-p">Assessoria de corrida com planilhas periodizadas para quem quer
                completar o primeiro 5K ou bater o recorde pessoal na maratona.</p>
-            <span class="mod-tag">Iniciante ao avançado</span>
+            <span class="mod-tag" data-i18n="mod-corrida-tag">Iniciante ao avançado</span>
           </div>
         </div>
 
         <div class="modality-card">
           <div class="mod-icon">🥊</div>
           <div class="mod-info">
-            <h3>Artes Marciais</h3>
-            <p>Muay thai, jiu-jitsu e boxe com mestres experientes. Aprenda
+            <h3 data-i18n="mod-artes-title">Artes Marciais</h3>
+            <p data-i18n="mod-artes-p">Muay thai, jiu-jitsu e boxe com mestres experientes. Aprenda
                autodefesa, disciplina e supere seus limites a cada aula.</p>
-            <span class="mod-tag">Defesa & disciplina</span>
+            <span class="mod-tag" data-i18n="mod-artes-tag">Defesa &amp; disciplina</span>
           </div>
         </div>
 
@@ -1049,9 +1099,9 @@
   ═══════════════════════════════════════════════════════ -->
   <section id="depoimentos" aria-labelledby="titulo-depoimentos">
     <div class="container">
-      <p class="section-label">O que dizem nossos alunos</p>
-      <h2 id="titulo-depoimentos" class="section-title">Depoimentos<br>reais</h2>
-      <p class="section-sub">
+      <p class="section-label" data-i18n="dep-label">O que dizem nossos alunos</p>
+      <h2 id="titulo-depoimentos" class="section-title" data-i18n="dep-title">Depoimentos<br>reais</h2>
+      <p class="section-sub" data-i18n="dep-sub">
         Veja como a Academia FitCode transformou a saúde, o bem-estar e
         a autoestima de quem escolheu começar hoje.
       </p>
@@ -1059,7 +1109,7 @@
       <div class="fc-depoimentos-grid">
 
         <article class="fc-depoimento-card">
-          <blockquote class="fc-depoimento-texto">
+          <blockquote class="fc-depoimento-texto" lang="pt-BR">
             Em seis meses de musculação na FitCode perdi 12 kg, ganhei
             disposição para o trabalho e finalmente me sinto bem comigo mesma.
             Os instrutores são incríveis e o ambiente é super acolhedor!
@@ -1081,7 +1131,7 @@
         </article>
 
         <article class="fc-depoimento-card">
-          <blockquote class="fc-depoimento-texto">
+          <blockquote class="fc-depoimento-texto" lang="pt-BR">
             As aulas de natação mudaram minha relação com o esporte. Nunca
             pensei que aprenderia a nadar aos 40 anos, mas os professores da
             FitCode tornaram tudo possível. Hoje faço 1 km sem parar!
@@ -1103,7 +1153,7 @@
         </article>
 
         <article class="fc-depoimento-card">
-          <blockquote class="fc-depoimento-texto">
+          <blockquote class="fc-depoimento-texto" lang="pt-BR">
             O CrossFit na FitCode foi a melhor decisão da minha vida. A
             comunidade me motiva todo dia e os resultados apareceram muito
             rápido. Recomendo para qualquer pessoa que queira se superar!
@@ -1131,29 +1181,29 @@
   <!-- ═══════════════════════════════════════════════════════
        PATROCINADOR — BOA FARMA
   ═══════════════════════════════════════════════════════ -->
-  <section id="patrocinador" class="sponsor-section" aria-label="Patrocinador Oficial — Boa Farma">
+  <section id="patrocinador" class="sponsor-section" aria-label="Patrocinador Oficial — Boa Farma" data-i18n-aria="sponsor-section">
     <div class="sponsor-inner">
 
       <div class="sponsor-left">
-        <p class="sponsor-eyebrow">✦ Patrocinador Oficial</p>
+        <p class="sponsor-eyebrow" data-i18n="sponsor-eyebrow">✦ Patrocinador Oficial</p>
         <div class="sponsor-logo">
           <div class="sponsor-icon">💊</div>
           <div class="sponsor-name-wrap">
             <span class="sponsor-name">Boa<span class="green">Farma</span></span>
-            <span class="sponsor-subtitle">Saúde &amp; Bem-estar</span>
+            <span class="sponsor-subtitle" data-i18n="sponsor-subtitle">Saúde &amp; Bem-estar</span>
           </div>
         </div>
       </div>
 
       <div class="sponsor-right">
-        <p>A <strong>Boa Farma</strong> acredita que saúde vai muito além dos medicamentos.
+        <p data-i18n="sponsor-p">A <strong>Boa Farma</strong> acredita que saúde vai muito além dos medicamentos.
            Por isso, apoia a Academia FitCode levando suplementação de qualidade,
            vitaminas e orientação farmacêutica especializada para todos os atletas.</p>
-        <blockquote class="sponsor-highlight">
+        <blockquote class="sponsor-highlight" data-i18n="sponsor-quote">
           "Movimento é remédio. E quando o movimento encontra a nutrição certa,
            os resultados são extraordinários."
         </blockquote>
-        <a href="#" class="btn-sponsor">
+        <a href="#" class="btn-sponsor" data-i18n="sponsor-btn">
           Conhecer a Boa Farma &#8594;
         </a>
       </div>
@@ -1168,9 +1218,11 @@
   ═══════════════════════════════════════════════════════ -->
   <footer>
     <div class="footer-logo">Fit<span>Code</span></div>
-    <p class="tagline">Transforme seu corpo. Liberte sua mente. Viva mais.</p>
-    <p class="sponsor-credit">Patrocinado com orgulho pela <a href="#">Boa Farma</a> — Saúde &amp; Bem-estar</p>
+    <p class="tagline" data-i18n="footer-tagline">Transforme seu corpo. Liberte sua mente. Viva mais.</p>
+    <p class="sponsor-credit" data-i18n="footer-sponsor">Patrocinado com orgulho pela <a href="#">Boa Farma</a> — Saúde &amp; Bem-estar</p>
   </footer>
+
+  <script defer src="lang.js"></script>
 
 </body>
 </html>

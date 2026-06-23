@@ -10,5 +10,12 @@ __pycache__/
 *.pyo
 .env
 
-# Prompts de uso local — não versionar
+# Prompts e guias de uso local — não versionar
 prompts-validacao-pilares.md
+docs/wiki/guia-workshop-pilares.md
+
+# Setup — apenas gerar_evidencia.py vai para o repositório remoto
+setup/_novo_pptx.py
+setup/gerar_pptx_copilot.py
+setup/preparar-apresentacao.ps1
+setup/mcp-pipe-test.js

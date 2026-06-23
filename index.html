@@ -792,7 +792,6 @@
     <nav aria-label="Navegação principal">
       <a href="#beneficios">Benefícios</a>
       <a href="#modalidades">Modalidades</a>
-      <a href="#depoimentos">Depoimentos</a>
       <a href="#patrocinador">Parceiro</a>
       <a href="#modalidades" class="nav-cta">Matricule-se</a>
     </nav>
@@ -1044,88 +1043,91 @@
     </div>
   </section>
 
+  <!-- DEPOIMENTOS removidos — serão criados ao vivo durante a apresentação -->
+
   <!-- ═══════════════════════════════════════════════════════
-       DEPOIMENTOS DE ALUNOS
+       DEMO PILAR 1 — CARD PLANO BRONZE
   ═══════════════════════════════════════════════════════ -->
-  <section id="depoimentos" aria-labelledby="titulo-depoimentos">
-    <div class="container">
-      <p class="section-label">O que dizem nossos alunos</p>
-      <h2 id="titulo-depoimentos" class="section-title">Depoimentos<br>reais</h2>
-      <p class="section-sub">
-        Veja como a Academia FitCode transformou a saúde, o bem-estar e
-        a autoestima de quem escolheu começar hoje.
-      </p>
+  <section id="plano-bronze" aria-labelledby="titulo-plano-bronze">
+    <style>
+      .fc-plano-card {
+        background: var(--card-bg, #1e2535);
+        border: 2px solid var(--green, #10b981);
+        border-radius: 12px;
+        max-width: 320px;
+        margin: 2rem auto;
+        padding: 2rem;
+        text-align: center;
+        color: #fff;
+        font-family: inherit;
+      }
+      .fc-plano-card__titulo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--green, #10b981);
+        margin: 0 0 .5rem;
+      }
+      .fc-plano-card__preco {
+        font-size: 2rem;
+        font-weight: 800;
+        margin: 0 0 1.5rem;
+      }
+      .fc-plano-card__preco span {
+        font-size: 1rem;
+        font-weight: 400;
+        opacity: .75;
+      }
+      .fc-plano-card__beneficios {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 1.5rem;
+        text-align: left;
+      }
+      .fc-plano-card__beneficios li {
+        padding: .4rem 0;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+      }
+      .fc-plano-card__beneficios li::before {
+        content: "✓ ";
+        color: var(--green, #10b981);
+        font-weight: 700;
+      }
+      .fc-plano-card__btn {
+        display: inline-block;
+        width: 100%;
+        padding: .75rem 1.5rem;
+        background: var(--green, #10b981);
+        color: #000;
+        font-weight: 700;
+        font-size: 1rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: opacity .2s;
+      }
+      .fc-plano-card__btn:hover,
+      .fc-plano-card__btn:focus-visible {
+        opacity: .85;
+        outline: 3px solid #fff;
+        outline-offset: 2px;
+      }
+    </style>
 
-      <div class="fc-depoimentos-grid">
+    <h2 id="titulo-plano-bronze" class="fc-section-title">Plano Bronze</h2>
 
-        <article class="fc-depoimento-card">
-          <blockquote class="fc-depoimento-texto">
-            Em seis meses de musculação na FitCode perdi 12 kg, ganhei
-            disposição para o trabalho e finalmente me sinto bem comigo mesma.
-            Os instrutores são incríveis e o ambiente é super acolhedor!
-          </blockquote>
-          <div class="fc-depoimento-autor">
-            <img
-              src="https://api.dicebear.com/7.x/personas/svg?seed=ana&backgroundColor=1e2535"
-              alt="Foto de perfil de Ana Lima, aluna de Musculação"
-              class="fc-depoimento-foto"
-              width="52"
-              height="52"
-              loading="lazy"
-            >
-            <div class="fc-depoimento-info">
-              <span class="fc-depoimento-nome">Ana Lima</span>
-              <span class="fc-depoimento-modalidade" aria-label="Musculação, aluna há 6 meses">Musculação · 6 meses</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="fc-depoimento-card">
-          <blockquote class="fc-depoimento-texto">
-            As aulas de natação mudaram minha relação com o esporte. Nunca
-            pensei que aprenderia a nadar aos 40 anos, mas os professores da
-            FitCode tornaram tudo possível. Hoje faço 1 km sem parar!
-          </blockquote>
-          <div class="fc-depoimento-autor">
-            <img
-              src="https://api.dicebear.com/7.x/personas/svg?seed=carlos&backgroundColor=1e2535"
-              alt="Foto de perfil de Carlos Souza, aluno de Natação"
-              class="fc-depoimento-foto"
-              width="52"
-              height="52"
-              loading="lazy"
-            >
-            <div class="fc-depoimento-info">
-              <span class="fc-depoimento-nome">Carlos Souza</span>
-              <span class="fc-depoimento-modalidade" aria-label="Natação, aluno há 8 meses">Natação · 8 meses</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="fc-depoimento-card">
-          <blockquote class="fc-depoimento-texto">
-            O CrossFit na FitCode foi a melhor decisão da minha vida. A
-            comunidade me motiva todo dia e os resultados apareceram muito
-            rápido. Recomendo para qualquer pessoa que queira se superar!
-          </blockquote>
-          <div class="fc-depoimento-autor">
-            <img
-              src="https://api.dicebear.com/7.x/personas/svg?seed=julia&backgroundColor=1e2535"
-              alt="Foto de perfil de Júlia Ferreira, aluna de CrossFit"
-              class="fc-depoimento-foto"
-              width="52"
-              height="52"
-              loading="lazy"
-            >
-            <div class="fc-depoimento-info">
-              <span class="fc-depoimento-nome">Júlia Ferreira</span>
-              <span class="fc-depoimento-modalidade" aria-label="CrossFit, aluna há 4 meses">CrossFit · 4 meses</span>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </div>
+    <article class="fc-plano-card" aria-label="Detalhes do Plano Bronze">
+      <h3 class="fc-plano-card__titulo">Plano Bronze</h3>
+      <p class="fc-plano-card__preco">R$ 89 <span>/ mês</span></p>
+      <ul class="fc-plano-card__beneficios" aria-label="Benefícios incluídos">
+        <li>Acesso à musculação e área cardio</li>
+        <li>Uso livre nos horários comerciais</li>
+        <li>Avaliação física semestral gratuita</li>
+      </ul>
+      <a href="#contato" class="fc-plano-card__btn" aria-label="Inscrever-se no Plano Bronze">
+        Inscrever
+      </a>
+    </article>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════

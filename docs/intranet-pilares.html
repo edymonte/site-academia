@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Intranet de Governança — Academia FitCode. Guia visual dos 8 pilares do GitHub Copilot para novos integrantes do time.">
+  <title>Governança Copilot — Academia FitCode</title>
+  <style>
+    /* ─── Variáveis ──────────────────────────────────────────────────── */
+    :root {
+      --fc-color-bg:        #0d1117;
+      --fc-color-bg2:       #161b27;
+      --fc-color-bg3:       #1a2035;
+      --fc-color-card:      #1e2535;
+      --fc-color-primary:   #10b981;
+      --fc-color-primary-dk:#059669;
+      --fc-color-glow:      rgba(16,185,129,0.35);
+      --fc-color-amber:     #f59e0b;
+      --fc-color-blue:      #3b82f6;
+      --fc-color-purple:    #8b5cf6;
+      --fc-color-red:       #ef4444;
+      --fc-color-text:      #f0f6fc;
+      --fc-color-muted:     #8b9ab1;
+      --fc-color-border:    rgba(255,255,255,0.07);
+      --fc-font-body:       -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+      --fc-font-mono:       'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--fc-font-body);
+      background: var(--fc-color-bg);
+      color: var(--fc-color-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── Background mesh ───────────────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 80vw 60vh at 10% 20%,  rgba(16,185,129,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 70vw 50vh at 90% 80%,  rgba(59,130,246,0.05) 0%, transparent 60%),
+        radial-gradient(ellipse 60vw 80vh at 50% 50%,  rgba(139,92,246,0.03) 0%, transparent 55%);
+    }
+    body > * { position: relative; z-index: 1; }
+
+    /* ─── Header ────────────────────────────────────────────────────── */
+    .fc-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      background: rgba(13,17,23,0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--fc-color-border);
+      padding: 0.85rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .fc-header__brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+    .fc-header__logo {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--fc-color-primary);
+      letter-spacing: -0.03em;
+    }
+    .fc-header__logo span { color: var(--fc-color-text); }
+    .fc-header__badge {
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--fc-color-amber);
+      background: rgba(245,158,11,0.12);
+      border: 1px solid rgba(245,158,11,0.25);
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+    }
+    .fc-header__nav {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+    .fc-header__nav a {
+      font-size: 0.8rem;
+      color: var(--fc-color-muted);
+      text-decoration: none;
+      padding: 0.35rem 0.7rem;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .fc-header__nav a:hover {
+      color: var(--fc-color-text);
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* ─── Main layout ───────────────────────────────────────────────── */
+    .fc-main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 7rem 1.5rem 4rem;
+    }
+
+    /* ─── Hero ──────────────────────────────────────────────────────── */
+    .fc-hero {
+      text-align: center;
+      padding: 3rem 1rem 4rem;
+    }
+    .fc-hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--fc-color-primary);
+      background: rgba(16,185,129,0.1);
+      border: 1px solid rgba(16,185,129,0.2);
+      padding: 0.3rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+    .fc-hero__title {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .fc-hero__title em {
+      font-style: normal;
+      color: var(--fc-color-primary);
+    }
+    .fc-hero__subtitle {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--fc-color-muted);
+      max-width: 580px;
+      margin: 0 auto 2.5rem;
+    }
+    .fc-hero__stats {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .fc-hero__stat {
+      text-align: center;
+    }
+    .fc-hero__stat-num {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--fc-color-primary);
+      letter-spacing: -0.04em;
+      display: block;
+    }
+    .fc-hero__stat-label {
+      font-size: 0.72rem;
+      color: var(--fc-color-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* ─── Flow diagram ──────────────────────────────────────────────── */
+    .fc-flow {
+      background: var(--fc-color-bg2);
+      border: 1px solid var(--fc-color-border);
+      border-radius: 18px;
+      padding: 2rem;
+      margin-bottom: 4rem;
+    }
+    .fc-flow__title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--fc-color-muted);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .fc-flow__track {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+    .fc-flow__node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      background: var(--fc-color-card);
+      border: 1px solid var(--fc-color-border);
+      min-width: 90px;
+      text-align: center;
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: default;
+    }
+    .fc-flow__node:hover {
+      border-color: var(--fc-color-primary);
+      transform: translateY(-2px);
+    }
+    .fc-flow__node-icon { font-size: 1.4rem; }
+    .fc-flow__node-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--fc-color-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .fc-flow__arrow {
+      color: var(--fc-color-muted);
+      font-size: 1.1rem;
+      padding: 0 0.25rem;
+      flex-shrink: 0;
+    }
+    .fc-flow__node--highlight {
+      border-color: rgba(16,185,129,0.4);
+      background: rgba(16,185,129,0.06);
+    }
+    .fc-flow__node--highlight .fc-flow__node-label {
+      color: var(--fc-color-primary);
+    }
+
+    /* ─── Pilares grid ──────────────────────────────────────────────── */
+    .fc-section__header {
+      margin-bottom: 2rem;
+    }
+    .fc-section__label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--fc-color-primary);
+      margin-bottom: 0.4rem;
+    }
+    .fc-section__title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+    .fc-section__sub {
+      color: var(--fc-color-muted);
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .fc-pilares-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 4rem;
+    }
+
+    /* ─── Pilar card ────────────────────────────────────────────────── */
+    .fc-pilar {
+      background: var(--fc-color-card);
+      border: 1px solid var(--fc-color-border);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+    .fc-pilar:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+    }
+    .fc-pilar--instructions:hover { border-color: rgba(16,185,129,0.45); }
+    .fc-pilar--skills:hover       { border-color: rgba(59,130,246,0.45); }
+    .fc-pilar--agents:hover       { border-color: rgba(139,92,246,0.45); }
+    .fc-pilar--mcp:hover          { border-color: rgba(245,158,11,0.45); }
+    .fc-pilar--hooks:hover        { border-color: rgba(239,68,68,0.45); }
+    .fc-pilar--kb:hover           { border-color: rgba(20,184,166,0.45); }
+    .fc-pilar--coding-agent:hover { border-color: rgba(99,102,241,0.45); }
+    .fc-pilar--cli:hover          { border-color: rgba(234,179,8,0.45); }
+
+    .fc-pilar__header {
+      padding: 1.5rem 1.5rem 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .fc-pilar__icon-wrap {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .fc-pilar--instructions .fc-pilar__icon-wrap { background: rgba(16,185,129,0.12); }
+    .fc-pilar--skills       .fc-pilar__icon-wrap { background: rgba(59,130,246,0.12); }
+    .fc-pilar--agents       .fc-pilar__icon-wrap { background: rgba(139,92,246,0.12); }
+    .fc-pilar--mcp          .fc-pilar__icon-wrap { background: rgba(245,158,11,0.12); }
+    .fc-pilar--hooks        .fc-pilar__icon-wrap { background: rgba(239,68,68,0.12); }
+    .fc-pilar--kb           .fc-pilar__icon-wrap { background: rgba(20,184,166,0.12); }
+    .fc-pilar--coding-agent .fc-pilar__icon-wrap { background: rgba(99,102,241,0.12); }
+    .fc-pilar--cli          .fc-pilar__icon-wrap { background: rgba(234,179,8,0.12); }
+
+    .fc-pilar__num {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--fc-color-muted);
+      background: var(--fc-color-bg3);
+      border: 1px solid var(--fc-color-border);
+      padding: 0.2rem 0.55rem;
+      border-radius: 100px;
+      letter-spacing: 0.08em;
+    }
+
+    .fc-pilar__body {
+      padding: 1rem 1.5rem 0;
+    }
+    .fc-pilar__name {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.35rem;
+    }
+    .fc-pilar__tagline {
+      font-size: 0.82rem;
+      color: var(--fc-color-muted);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    /* tags do pilar */
+    .fc-pilar__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.1rem;
+    }
+    .fc-pilar__tag {
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--fc-color-muted);
+    }
+
+    /* snippet de código */
+    .fc-pilar__code {
+      background: var(--fc-color-bg);
+      border: 1px solid var(--fc-color-border);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      font-family: var(--fc-font-mono);
+      font-size: 0.72rem;
+      line-height: 1.7;
+      color: #a5d6ff;
+      overflow-x: auto;
+      margin-bottom: 1.1rem;
+      white-space: pre;
+    }
+    .fc-pilar__code .fc-hl-green  { color: #7ee787; }
+    .fc-pilar__code .fc-hl-amber  { color: #e3b341; }
+    .fc-pilar__code .fc-hl-muted  { color: #6e7681; }
+    .fc-pilar__code .fc-hl-pink   { color: #f778ba; }
+    .fc-pilar__code .fc-hl-blue   { color: #79c0ff; }
+
+    /* expandir detalhes */
+    .fc-pilar__toggle {
+      width: 100%;
+      background: none;
+      border: none;
+      border-top: 1px solid var(--fc-color-border);
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--fc-color-muted);
+      font-size: 0.78rem;
+      font-family: var(--fc-font-body);
+      cursor: pointer;
+      transition: color 0.2s, background 0.2s;
+      margin-top: 1rem;
+    }
+    .fc-pilar__toggle:hover {
+      color: var(--fc-color-text);
+      background: rgba(255,255,255,0.03);
+    }
+    .fc-pilar__toggle-arrow {
+      transition: transform 0.3s;
+      font-size: 0.65rem;
+    }
+    .fc-pilar__toggle[aria-expanded="true"] .fc-pilar__toggle-arrow {
+      transform: rotate(180deg);
+    }
+
+    .fc-pilar__details {
+      display: none;
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid var(--fc-color-border);
+      background: rgba(0,0,0,0.15);
+    }
+    .fc-pilar__details.is-open {
+      display: block;
+    }
+    .fc-pilar__detail-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--fc-color-muted);
+      margin-bottom: 0.75rem;
+    }
+    .fc-pilar__checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .fc-pilar__checklist li {
+      font-size: 0.8rem;
+      color: var(--fc-color-text);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      line-height: 1.5;
+    }
+    .fc-pilar__checklist li::before {
+      content: '→';
+      color: var(--fc-color-primary);
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+      font-weight: 700;
+    }
+    .fc-pilar__file-path {
+      font-family: var(--fc-font-mono);
+      font-size: 0.7rem;
+      color: var(--fc-color-amber);
+      background: rgba(245,158,11,0.08);
+      border: 1px solid rgba(245,158,11,0.15);
+      padding: 0.15rem 0.5rem;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    /* ─── Comparativo table ─────────────────────────────────────────── */
+    .fc-compare {
+      background: var(--fc-color-bg2);
+      border: 1px solid var(--fc-color-border);
+      border-radius: 18px;
+      padding: 2rem;
+      margin-bottom: 4rem;
+      overflow-x: auto;
+    }
+    .fc-compare__title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+    }
+    .fc-compare table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+    .fc-compare th {
+      text-align: left;
+      padding: 0.6rem 1rem;
+      background: var(--fc-color-bg3);
+      color: var(--fc-color-muted);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+    }
+    .fc-compare th:first-child { border-radius: 10px 0 0 10px; }
+    .fc-compare th:last-child  { border-radius: 0 10px 10px 0; }
+    .fc-compare td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--fc-color-border);
+      color: var(--fc-color-text);
+      vertical-align: top;
+    }
+    .fc-compare tr:last-child td { border-bottom: none; }
+    .fc-compare tr:hover td { background: rgba(255,255,255,0.02); }
+    .fc-badge {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.15rem 0.55rem;
+      border-radius: 100px;
+    }
+    .fc-badge--always  { background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.3); }
+    .fc-badge--demand  { background: rgba(59,130,246,0.15);  color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); }
+    .fc-badge--explicit{ background: rgba(139,92,246,0.15); color: #a78bfa; border: 1px solid rgba(139,92,246,0.3); }
+    .fc-badge--auto    { background: rgba(239,68,68,0.15);   color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+    .fc-badge--semantic{ background: rgba(20,184,166,0.15);  color: #2dd4bf; border: 1px solid rgba(20,184,166,0.3); }
+    .fc-badge--github  { background: rgba(99,102,241,0.15);  color: #818cf8; border: 1px solid rgba(99,102,241,0.3); }
+    .fc-badge--cli     { background: rgba(234,179,8,0.15);   color: #fbbf24; border: 1px solid rgba(234,179,8,0.3); }
+
+    /* ─── Quick start box ───────────────────────────────────────────── */
+    .fc-quickstart {
+      background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(59,130,246,0.06) 100%);
+      border: 1px solid rgba(16,185,129,0.2);
+      border-radius: 18px;
+      padding: 2rem;
+      margin-bottom: 4rem;
+    }
+    .fc-quickstart__title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+    .fc-quickstart__sub {
+      font-size: 0.85rem;
+      color: var(--fc-color-muted);
+      margin-bottom: 1.5rem;
+    }
+    .fc-quickstart__steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .fc-quickstart__step {
+      background: var(--fc-color-card);
+      border: 1px solid var(--fc-color-border);
+      border-radius: 12px;
+      padding: 1rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    .fc-quickstart__step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(16,185,129,0.15);
+      border: 1px solid rgba(16,185,129,0.3);
+      color: var(--fc-color-primary);
+      font-size: 0.75rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .fc-quickstart__step-text {
+      font-size: 0.8rem;
+      line-height: 1.5;
+      color: var(--fc-color-text);
+    }
+    .fc-quickstart__step-text strong {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    /* ─── Footer ────────────────────────────────────────────────────── */
+    .fc-footer {
+      border-top: 1px solid var(--fc-color-border);
+      text-align: center;
+      padding: 2rem;
+      color: var(--fc-color-muted);
+      font-size: 0.78rem;
+    }
+    .fc-footer a {
+      color: var(--fc-color-primary);
+      text-decoration: none;
+    }
+
+    /* ─── Responsive ────────────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .fc-header__nav { display: none; }
+      .fc-main { padding: 5.5rem 1rem 3rem; }
+      .fc-hero__stats { gap: 1.5rem; }
+      .fc-flow__track { gap: 0.25rem; }
+      .fc-flow__node { min-width: 72px; padding: 0.6rem 0.5rem; }
+      .fc-flow__node-icon { font-size: 1.1rem; }
+      .fc-flow__node-label { font-size: 0.55rem; }
+      .fc-flow__arrow { font-size: 0.85rem; padding: 0 0.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Header ──────────────────────────────────────────────────────── -->
+  <header class="fc-header" role="banner">
+    <a href="#inicio" class="fc-header__brand" aria-label="Academia FitCode — página inicial">
+      <span class="fc-header__logo">Fit<span>Code</span></span>
+      <span class="fc-header__badge">Intranet</span>
+    </a>
+    <nav class="fc-header__nav" aria-label="Navegação da intranet">
+      <a href="#pilares">Pilares</a>
+      <a href="#comparativo">Comparativo</a>
+      <a href="#quickstart">Primeiros passos</a>
+    </nav>
+  </header>
+
+  <!-- ─── Main ────────────────────────────────────────────────────────── -->
+  <main class="fc-main" id="inicio">
+
+    <!-- Hero -->
+    <section class="fc-hero" aria-labelledby="fc-hero-title">
+      <p class="fc-hero__eyebrow" aria-hidden="true">🏛️ Governança do Copilot</p>
+      <h1 class="fc-hero__title" id="fc-hero-title">
+        Os <em>8 Pilares</em> que<br>guiam o Copilot no time
+      </h1>
+      <p class="fc-hero__subtitle">
+        Guia visual para novos integrantes entenderem como configuramos,
+        controlamos e potencializamos o GitHub Copilot na Academia FitCode.
+      </p>
+      <dl class="fc-hero__stats">
+        <div class="fc-hero__stat">
+          <span class="fc-hero__stat-num">8</span>
+          <dt class="fc-hero__stat-label">Pilares</dt>
+        </div>
+        <div class="fc-hero__stat">
+          <span class="fc-hero__stat-num">100%</span>
+          <dt class="fc-hero__stat-label">Configurados</dt>
+        </div>
+        <div class="fc-hero__stat">
+          <span class="fc-hero__stat-num">WCAG</span>
+          <dt class="fc-hero__stat-label">AA garantido</dt>
+        </div>
+      </dl>
+    </section>
+
+    <!-- Fluxo: como os pilares se ativam -->
+    <section class="fc-flow" aria-labelledby="fc-flow-title">
+      <h2 class="fc-flow__title" id="fc-flow-title">Como o Copilot decide o que fazer — fluxo de ativação</h2>
+      <div class="fc-flow__track" role="list" aria-label="Ordem de ativação dos pilares">
+        <div class="fc-flow__node fc-flow__node--highlight" role="listitem">
+          <span class="fc-flow__node-icon" aria-hidden="true">👤</span>
+          <span class="fc-flow__node-label">Dev faz pergunta</span>
+        </div>
+        <span class="fc-flow__arrow" aria-hidden="true">›</span>
+        <div class="fc-flow__node" role="listitem">
+          <span class="fc-flow__node-icon" aria-hidden="true">📋</span>
+          <span class="fc-flow__node-label">Instructions</span>
+        </div>
+        <span class="fc-flow__arrow" aria-hidden="true">›</span>
+        <div class="fc-flow__node" role="listitem">
+          <span class="fc-flow__node-icon" aria-hidden="true">🧠</span>
+          <span class="fc-flow__node-label">Skills</span>
+        </div>
+        <span class="fc-flow__arrow" aria-hidden="true">›</span>
+        <div class="fc-flow__node" role="listitem">
+          <span class="fc-flow__node-icon" aria-hidden="true">🔌</span>
+          <span class="fc-flow__node-label">MCP</span>
+        </div>
+        <span class="fc-flow__arrow" aria-hidden="true">›</span>
+        <div class="fc-flow__node" role="listitem">
+          <span class="fc-flow__node-icon" aria-hidden="true">📚</span>
+          <span class="fc-flow__node-label">Knowledge Base</span>
+        </div>
+        <span class="fc-flow__arrow" aria-hidden="true">›</span>
+        <div class="fc-flow__node fc-flow__node--highlight" role="listitem">
+          <span class="fc-flow__node-icon" aria-hidden="true">✍️</span>
+          <span class="fc-flow__node-label">Gera código</span>
+        </div>
+        <span class="fc-flow__arrow" aria-hidden="true">›</span>
+        <div class="fc-flow__node" role="listitem">
+          <span class="fc-flow__node-icon" aria-hidden="true">🪝</span>
+          <span class="fc-flow__node-label">Hooks validam</span>
+        </div>
+        <span class="fc-flow__arrow" aria-hidden="true">›</span>
+        <div class="fc-flow__node fc-flow__node--highlight" role="listitem">
+          <span class="fc-flow__node-icon" aria-hidden="true">✅</span>
+          <span class="fc-flow__node-label">Código aprovado</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grid dos 8 Pilares -->
+    <section id="pilares" aria-labelledby="fc-pilares-title">
+      <header class="fc-section__header">
+        <p class="fc-section__label">Governança</p>
+        <h2 class="fc-section__title" id="fc-pilares-title">Os 8 Pilares em detalhe</h2>
+        <p class="fc-section__sub">Clique em "Ver detalhes" em cada card para expandir exemplos e arquivos do repositório.</p>
+      </header>
+
+      <ul class="fc-pilares-grid" aria-label="Lista dos 8 pilares de governança">
+
+        <!-- Pilar 1 — Instructions -->
+        <li class="fc-pilar fc-pilar--instructions">
+          <div class="fc-pilar__header">
+            <div class="fc-pilar__icon-wrap" aria-hidden="true">📋</div>
+            <span class="fc-pilar__num">Pilar 01</span>
+          </div>
+          <div class="fc-pilar__body">
+            <h3 class="fc-pilar__name">Instructions</h3>
+            <p class="fc-pilar__tagline">
+              Regras permanentes injetadas em <strong>todo</strong> contexto do Copilot — automaticamente, sem ação do dev.
+            </p>
+            <ul class="fc-pilar__tags" aria-label="Características">
+              <li class="fc-pilar__tag">Sempre ativo</li>
+              <li class="fc-pilar__tag">HTML semântico</li>
+              <li class="fc-pilar__tag">WCAG AA</li>
+              <li class="fc-pilar__tag">SEO</li>
+            </ul>
+            <pre class="fc-pilar__code" aria-label="Exemplo de instruction"><span class="fc-hl-muted"># .github/copilot-instructions.md</span>
+<span class="fc-hl-green">## HTML Semântico</span>
+- Use <span class="fc-hl-amber">&lt;section&gt;</span>, <span class="fc-hl-amber">&lt;article&gt;</span>, <span class="fc-hl-amber">&lt;header&gt;</span>
+- Nunca use <span class="fc-hl-pink">&lt;div&gt;</span> onde semântico se aplica
+- Classes CSS: prefixo <span class="fc-hl-blue">fc-</span></pre>
+          </div>
+          <button class="fc-pilar__toggle" aria-expanded="false" aria-controls="details-1">
+            Ver detalhes <span class="fc-pilar__toggle-arrow" aria-hidden="true">▾</span>
+          </button>
+          <div class="fc-pilar__details" id="details-1" role="region" aria-label="Detalhes do Pilar Instructions">
+            <p class="fc-pilar__detail-title">Arquivos no repositório</p>
+            <ul class="fc-pilar__checklist">
+              <li><code class="fc-pilar__file-path">.github/copilot-instructions.md</code> — regras globais do time</li>
+              <li><code class="fc-pilar__file-path">.github/instructions/acessibilidade.instructions.md</code> — WCAG AA</li>
+              <li><code class="fc-pilar__file-path">.github/instructions/seo.instructions.md</code> — meta tags, OG, alt</li>
+            </ul>
+            <br>
+            <p class="fc-pilar__detail-title">O que isso garante</p>
+            <ul class="fc-pilar__checklist">
+              <li>Toda imagem gerada terá <code>alt</code> descritivo</li>
+              <li>Botões e links terão texto visível ou <code>aria-label</code></li>
+              <li>Classes CSS sempre com prefixo <code>fc-</code></li>
+              <li>Hierarquia h1 → h2 → h3 nunca pulando nível</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Pilar 2 — Skills -->
+        <li class="fc-pilar fc-pilar--skills">
+          <div class="fc-pilar__header">
+            <div class="fc-pilar__icon-wrap" aria-hidden="true">🧠</div>
+            <span class="fc-pilar__num">Pilar 02</span>
+          </div>
+          <div class="fc-pilar__body">
+            <h3 class="fc-pilar__name">Skills</h3>
+            <p class="fc-pilar__tagline">
+              Conhecimento especializado injetado <strong>sob demanda</strong> — o Copilot decide quando o contexto é relevante.
+            </p>
+            <ul class="fc-pilar__tags" aria-label="Características">
+              <li class="fc-pilar__tag">Sob demanda</li>
+              <li class="fc-pilar__tag">Templates</li>
+              <li class="fc-pilar__tag">Mobile-first</li>
+            </ul>
+            <pre class="fc-pilar__code" aria-label="Exemplo de skill"><span class="fc-hl-muted"># .github/skills/gerar-secao/SKILL.md</span>
+<span class="fc-hl-green">## Quando usar:</span> seção, hero, cards,
+  planos, depoimentos, rodapé
+
+<span class="fc-hl-green">## Template</span>
+<span class="fc-hl-amber">&lt;section</span> aria-labelledby="id"<span class="fc-hl-amber">&gt;</span>
+  <span class="fc-hl-blue">/* mobile-first + fc- prefix */</span></pre>
+          </div>
+          <button class="fc-pilar__toggle" aria-expanded="false" aria-controls="details-2">
+            Ver detalhes <span class="fc-pilar__toggle-arrow" aria-hidden="true">▾</span>
+          </button>
+          <div class="fc-pilar__details" id="details-2" role="region" aria-label="Detalhes do Pilar Skills">
+            <p class="fc-pilar__detail-title">Skills disponíveis</p>
+            <ul class="fc-pilar__checklist">
+              <li><code class="fc-pilar__file-path">.github/skills/gerar-secao/</code> — template de seção HTML</li>
+              <li><code class="fc-pilar__file-path">.github/skills/precos/</code> — template de card de planos</li>
+              <li><code class="fc-pilar__file-path">.github/skills/suporte/</code> — template de FAQ / suporte</li>
+            </ul>
+            <br>
+            <p class="fc-pilar__detail-title">Skills vs. Instructions</p>
+            <ul class="fc-pilar__checklist">
+              <li><strong>Instructions</strong> = regras que sempre valem ("imagem precisa de alt")</li>
+              <li><strong>Skills</strong> = procedimentos pontuais ("ao gerar seção, use este template")</li>
+              <li>Skill entra quando o Copilot detecta o contexto adequado</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Pilar 3 — Agents -->
+        <li class="fc-pilar fc-pilar--agents">
+          <div class="fc-pilar__header">
+            <div class="fc-pilar__icon-wrap" aria-hidden="true">🤖</div>
+            <span class="fc-pilar__num">Pilar 03</span>
+          </div>
+          <div class="fc-pilar__body">
+            <h3 class="fc-pilar__name">Agents</h3>
+            <p class="fc-pilar__tagline">
+              Agentes com identidade, escopo e ferramentas próprias. Invocados explicitamente com <code>@nome</code>.
+            </p>
+            <ul class="fc-pilar__tags" aria-label="Características">
+              <li class="fc-pilar__tag">Invocação explícita</li>
+              <li class="fc-pilar__tag">Ferramentas próprias</li>
+              <li class="fc-pilar__tag">QA automatizado</li>
+            </ul>
+            <pre class="fc-pilar__code" aria-label="Exemplo de agent"><span class="fc-hl-muted"># Como invocar:</span>
+<span class="fc-hl-green">@qa-academia</span> revise o index.html
+<span class="fc-hl-green">@qa-academia</span> verifique acessibilidade
+
+<span class="fc-hl-muted"># O agente retorna:</span>
+🔴 Bloqueante | 🟡 Atenção | 🟢 Sugestão</pre>
+          </div>
+          <button class="fc-pilar__toggle" aria-expanded="false" aria-controls="details-3">
+            Ver detalhes <span class="fc-pilar__toggle-arrow" aria-hidden="true">▾</span>
+          </button>
+          <div class="fc-pilar__details" id="details-3" role="region" aria-label="Detalhes do Pilar Agents">
+            <p class="fc-pilar__detail-title">Agentes do projeto</p>
+            <ul class="fc-pilar__checklist">
+              <li><code class="fc-pilar__file-path">.github/agents/qa-academia.agent.md</code> — revisor de QA</li>
+            </ul>
+            <br>
+            <p class="fc-pilar__detail-title">O @qa-academia verifica</p>
+            <ul class="fc-pilar__checklist">
+              <li>Acessibilidade — aria-label, roles, contraste WCAG AA</li>
+              <li>SEO — meta tags, alt em imagens, headings</li>
+              <li>Performance — imagens sem lazy loading, scripts bloqueantes</li>
+              <li>HTML semântico — uso de section, article, nav</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Pilar 4 — MCP -->
+        <li class="fc-pilar fc-pilar--mcp">
+          <div class="fc-pilar__header">
+            <div class="fc-pilar__icon-wrap" aria-hidden="true">🔌</div>
+            <span class="fc-pilar__num">Pilar 04</span>
+          </div>
+          <div class="fc-pilar__body">
+            <h3 class="fc-pilar__name">MCP</h3>
+            <p class="fc-pilar__tagline">
+              Model Context Protocol — conecta o agente a ferramentas externas: APIs, docs ao vivo, sistema de arquivos.
+            </p>
+            <ul class="fc-pilar__tags" aria-label="Características">
+              <li class="fc-pilar__tag">Ferramentas externas</li>
+              <li class="fc-pilar__tag">Fetch de docs</li>
+              <li class="fc-pilar__tag">Filesystem</li>
+            </ul>
+            <pre class="fc-pilar__code" aria-label="Exemplo de MCP"><span class="fc-hl-muted">// .vscode/mcp.json</span>
+{
+  <span class="fc-hl-green">"servers"</span>: {
+    <span class="fc-hl-amber">"fetch"</span>: { ... },
+    <span class="fc-hl-amber">"filesystem"</span>: { ... },
+    <span class="fc-hl-amber">"precos-academia"</span>: { ... }
+  }
+}</pre>
+          </div>
+          <button class="fc-pilar__toggle" aria-expanded="false" aria-controls="details-4">
+            Ver detalhes <span class="fc-pilar__toggle-arrow" aria-hidden="true">▾</span>
+          </button>
+          <div class="fc-pilar__details" id="details-4" role="region" aria-label="Detalhes do Pilar MCP">
+            <p class="fc-pilar__detail-title">Servidores MCP configurados</p>
+            <ul class="fc-pilar__checklist">
+              <li><strong>fetch</strong> — busca qualquer URL pública em tempo real (docs WCAG, APIs)</li>
+              <li><strong>filesystem</strong> — explora o projeto com busca semântica</li>
+              <li><strong>precos-academia</strong> — servidor local com preços dos planos</li>
+            </ul>
+            <br>
+            <p class="fc-pilar__detail-title">Como usar no chat</p>
+            <ul class="fc-pilar__checklist">
+              <li>"Busque as diretrizes WCAG 2.1 e aplique ao nosso CSS"</li>
+              <li>"Quais arquivos CSS têm as variáveis de cor?" — sem indicar caminho</li>
+              <li>"Qual o preço do plano Premium?" — consulta o servidor local</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Pilar 5 — Hooks -->
+        <li class="fc-pilar fc-pilar--hooks">
+          <div class="fc-pilar__header">
+            <div class="fc-pilar__icon-wrap" aria-hidden="true">🪝</div>
+            <span class="fc-pilar__num">Pilar 05</span>
+          </div>
+          <div class="fc-pilar__body">
+            <h3 class="fc-pilar__name">Hooks</h3>
+            <p class="fc-pilar__tagline">
+              Único primitivo que <strong>bloqueia e corrige</strong> o agente. Intercepta ações e injeta feedback automático.
+            </p>
+            <ul class="fc-pilar__tags" aria-label="Características">
+              <li class="fc-pilar__tag">Bloqueia ações</li>
+              <li class="fc-pilar__tag">postToolUse</li>
+              <li class="fc-pilar__tag">Lint automático</li>
+            </ul>
+            <pre class="fc-pilar__code" aria-label="Eventos de hook disponíveis"><span class="fc-hl-muted">Eventos disponíveis:</span>
+<span class="fc-hl-green">preToolUse</span>  → único que BLOQUEIA antes
+<span class="fc-hl-amber">postToolUse</span> → valida após edição ← nosso
+sessionStart → log de início
+userPromptSubmitted → filtra dados</pre>
+          </div>
+          <button class="fc-pilar__toggle" aria-expanded="false" aria-controls="details-5">
+            Ver detalhes <span class="fc-pilar__toggle-arrow" aria-hidden="true">▾</span>
+          </button>
+          <div class="fc-pilar__details" id="details-5" role="region" aria-label="Detalhes do Pilar Hooks">
+            <p class="fc-pilar__detail-title">Hook configurado: lint-guard</p>
+            <ul class="fc-pilar__checklist">
+              <li><code class="fc-pilar__file-path">.github/hooks/lint-guard.json</code> — definição do hook</li>
+              <li><code class="fc-pilar__file-path">.github/hooks/scripts/lint-guard.ps1</code> — Windows</li>
+              <li><code class="fc-pilar__file-path">.github/hooks/scripts/lint-guard.sh</code> — Linux/Mac</li>
+            </ul>
+            <br>
+            <p class="fc-pilar__detail-title">Regras que o hook verifica</p>
+            <ul class="fc-pilar__checklist">
+              <li>Proibido <code>&lt;div&gt;</code> onde elemento semântico se aplica</li>
+              <li>Toda <code>&lt;img&gt;</code> deve ter atributo <code>alt</code></li>
+              <li>Classes CSS devem usar prefixo <code>fc-</code></li>
+              <li><code>outline: none</code> remove foco — violação WCAG 2.4.7</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Pilar 6 — Knowledge Base -->
+        <li class="fc-pilar fc-pilar--kb">
+          <div class="fc-pilar__header">
+            <div class="fc-pilar__icon-wrap" aria-hidden="true">📚</div>
+            <span class="fc-pilar__num">Pilar 06</span>
+          </div>
+          <div class="fc-pilar__body">
+            <h3 class="fc-pilar__name">Knowledge Base</h3>
+            <p class="fc-pilar__tagline">
+              Documentação versionada no repo que o Copilot consulta e <strong>aplica diretamente no código</strong>.
+            </p>
+            <ul class="fc-pilar__tags" aria-label="Características">
+              <li class="fc-pilar__tag">Pesquisa semântica</li>
+              <li class="fc-pilar__tag">Identidade visual</li>
+              <li class="fc-pilar__tag">Tom de voz</li>
+            </ul>
+            <pre class="fc-pilar__code" aria-label="Exemplo de uso da knowledge base"><span class="fc-hl-muted">@workspace Qual é a cor primária da marca?</span>
+<span class="fc-hl-muted"># → Copilot encontra em identidade-visual.md:</span>
+<span class="fc-hl-green">--fc-color-primary: #10b981</span>
+
+<span class="fc-hl-muted"># Sem você copiar e colar nada.</span></pre>
+          </div>
+          <button class="fc-pilar__toggle" aria-expanded="false" aria-controls="details-6">
+            Ver detalhes <span class="fc-pilar__toggle-arrow" aria-hidden="true">▾</span>
+          </button>
+          <div class="fc-pilar__details" id="details-6" role="region" aria-label="Detalhes do Pilar Knowledge Base">
+            <p class="fc-pilar__detail-title">Wiki do repositório</p>
+            <ul class="fc-pilar__checklist">
+              <li><code class="fc-pilar__file-path">docs/wiki/identidade-visual.md</code> — paleta, tipografia, bordas</li>
+              <li><code class="fc-pilar__file-path">docs/wiki/conteudo-academia.md</code> — tom de voz, frases proibidas</li>
+              <li><code class="fc-pilar__file-path">docs/wiki/suporte-sla.md</code> — SLA de atendimento</li>
+            </ul>
+            <br>
+            <p class="fc-pilar__detail-title">Por que importa</p>
+            <ul class="fc-pilar__checklist">
+              <li>Preço do plano alterou? Atualiza o Markdown — o agente usa automaticamente</li>
+              <li>Nova cor na identidade? Um arquivo, zero retrabalho no CSS</li>
+              <li>Prompts dedicados em <code class="fc-pilar__file-path">.github/prompts/</code></li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Pilar 7 — Coding Agent -->
+        <li class="fc-pilar fc-pilar--coding-agent">
+          <div class="fc-pilar__header">
+            <div class="fc-pilar__icon-wrap" aria-hidden="true">⚙️</div>
+            <span class="fc-pilar__num">Pilar 07</span>
+          </div>
+          <div class="fc-pilar__body">
+            <h3 class="fc-pilar__name">Coding Agent</h3>
+            <p class="fc-pilar__tagline">
+              Copilot autônomo no GitHub.com. Você atribui uma issue — ele explora, codifica e <strong>abre o PR automaticamente</strong>.
+            </p>
+            <ul class="fc-pilar__tags" aria-label="Características">
+              <li class="fc-pilar__tag">Issue → PR</li>
+              <li class="fc-pilar__tag">Autônomo</li>
+              <li class="fc-pilar__tag">AGENTS.md</li>
+            </ul>
+            <pre class="fc-pilar__code" aria-label="Fluxo do Coding Agent">1. Cria issue no GitHub
+2. Atribui ao <span class="fc-hl-green">Copilot</span> no campo Assignees
+3. Copilot lê <span class="fc-hl-amber">AGENTS.md</span> + instructions
+4. Explora o repo, escreve HTML/CSS
+5. Abre <span class="fc-hl-blue">draft PR</span> automaticamente</pre>
+          </div>
+          <button class="fc-pilar__toggle" aria-expanded="false" aria-controls="details-7">
+            Ver detalhes <span class="fc-pilar__toggle-arrow" aria-hidden="true">▾</span>
+          </button>
+          <div class="fc-pilar__details" id="details-7" role="region" aria-label="Detalhes do Pilar Coding Agent">
+            <p class="fc-pilar__detail-title">Arquivo de controle</p>
+            <ul class="fc-pilar__checklist">
+              <li><code class="fc-pilar__file-path">AGENTS.md</code> — instrui o Coding Agent sobre regras do time</li>
+              <li><code class="fc-pilar__file-path">.github/workflows/deploy.yml</code> — pipeline que ele respeita</li>
+            </ul>
+            <br>
+            <p class="fc-pilar__detail-title">O AGENTS.md define</p>
+            <ul class="fc-pilar__checklist">
+              <li>Princípio do fix mínimo — não refatora sem solicitação</li>
+              <li>Branches e fluxo de trabalho (feature/front, feature/conteudo…)</li>
+              <li>Arquivos que o agente pode ou não modificar</li>
+              <li>Padrão de commit Conventional Commits</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Pilar 8 — CLI -->
+        <li class="fc-pilar fc-pilar--cli">
+          <div class="fc-pilar__header">
+            <div class="fc-pilar__icon-wrap" aria-hidden="true">💻</div>
+            <span class="fc-pilar__num">Pilar 08</span>
+          </div>
+          <div class="fc-pilar__body">
+            <h3 class="fc-pilar__name">CLI</h3>
+            <p class="fc-pilar__tagline">
+              GitHub Copilot direto no terminal — sugestões de comandos shell, explicações e agente interativo completo.
+            </p>
+            <ul class="fc-pilar__tags" aria-label="Características">
+              <li class="fc-pilar__tag">gh copilot</li>
+              <li class="fc-pilar__tag">suggest / explain</li>
+              <li class="fc-pilar__tag">Agente no terminal</li>
+            </ul>
+            <pre class="fc-pilar__code" aria-label="Exemplos de CLI"><span class="fc-hl-muted"># Sugestão de comando</span>
+<span class="fc-hl-green">gh copilot suggest</span> "reverter último commit"
+
+<span class="fc-hl-muted"># Explicação de comando</span>
+<span class="fc-hl-green">gh copilot explain</span> "git rebase -i HEAD~3"
+
+<span class="fc-hl-muted"># Agente interativo completo</span>
+<span class="fc-hl-amber">gh copilot</span> -p "verifique alt em src/"</pre>
+          </div>
+          <button class="fc-pilar__toggle" aria-expanded="false" aria-controls="details-8">
+            Ver detalhes <span class="fc-pilar__toggle-arrow" aria-hidden="true">▾</span>
+          </button>
+          <div class="fc-pilar__details" id="details-8" role="region" aria-label="Detalhes do Pilar CLI">
+            <p class="fc-pilar__detail-title">Dois modos de uso</p>
+            <ul class="fc-pilar__checklist">
+              <li><code>gh copilot suggest</code> — sugere o comando shell correto em linguagem natural</li>
+              <li><code>gh copilot explain</code> — explica qualquer comando git/shell</li>
+              <li><code>gh copilot</code> — agente interativo: edita arquivos, roda lint, delega com <code>&amp;</code></li>
+            </ul>
+            <br>
+            <p class="fc-pilar__detail-title">Pré-requisito</p>
+            <ul class="fc-pilar__checklist">
+              <li><code>gh</code> v2.93+ instalado — <strong>já disponível neste ambiente</strong></li>
+              <li>O subcomando <code>gh copilot</code> faz download automático na primeira execução</li>
+              <li>Sem necessidade de instalar extensão separada</li>
+            </ul>
+          </div>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- Comparativo -->
+    <section id="comparativo" aria-labelledby="fc-compare-title">
+      <div class="fc-compare">
+        <h2 class="fc-compare__title" id="fc-compare-title">Comparativo: quando cada pilar entra em cena</h2>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Pilar</th>
+              <th scope="col">Ativação</th>
+              <th scope="col">Quem controla</th>
+              <th scope="col">Exemplo de uso</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>📋 Instructions</td>
+              <td><span class="fc-badge fc-badge--always">Sempre</span></td>
+              <td>Time (arquivo no repo)</td>
+              <td>"Toda img deve ter alt" — aplicado em todo chat</td>
+            </tr>
+            <tr>
+              <td>🧠 Skills</td>
+              <td><span class="fc-badge fc-badge--demand">Sob demanda</span></td>
+              <td>Copilot decide pelo contexto</td>
+              <td>"Gere uma seção" → skill de template é injetada</td>
+            </tr>
+            <tr>
+              <td>🤖 Agents</td>
+              <td><span class="fc-badge fc-badge--explicit">Explícito</span></td>
+              <td>Dev (invoca @nome)</td>
+              <td><code>@qa-academia revise o index.html</code></td>
+            </tr>
+            <tr>
+              <td>🔌 MCP</td>
+              <td><span class="fc-badge fc-badge--demand">Sob demanda</span></td>
+              <td>Copilot usa quando necessário</td>
+              <td>"Busque as diretrizes WCAG ao vivo"</td>
+            </tr>
+            <tr>
+              <td>🪝 Hooks</td>
+              <td><span class="fc-badge fc-badge--auto">Automático</span></td>
+              <td>Sistema (após cada edição)</td>
+              <td>Lint dispara → erros injetados → agente corrige</td>
+            </tr>
+            <tr>
+              <td>📚 Knowledge Base</td>
+              <td><span class="fc-badge fc-badge--semantic">Semântico</span></td>
+              <td>Copilot pesquisa em background</td>
+              <td>"Qual a cor primária?" → encontra em identidade-visual.md</td>
+            </tr>
+            <tr>
+              <td>⚙️ Coding Agent</td>
+              <td><span class="fc-badge fc-badge--github">GitHub.com</span></td>
+              <td>Dev (atribui issue)</td>
+              <td>Issue criada → PR aberto automaticamente</td>
+            </tr>
+            <tr>
+              <td>💻 CLI</td>
+              <td><span class="fc-badge fc-badge--cli">Terminal</span></td>
+              <td>Dev (linha de comando)</td>
+              <td><code>gh copilot suggest "reverter commit"</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Quick start -->
+    <section id="quickstart" aria-labelledby="fc-qs-title">
+      <div class="fc-quickstart">
+        <h2 class="fc-quickstart__title" id="fc-qs-title">🚀 Primeiros passos para novos integrantes</h2>
+        <p class="fc-quickstart__sub">Siga essa ordem para entender e validar todos os pilares.</p>
+        <ul class="fc-quickstart__steps" aria-label="Passos para novos integrantes">
+          <li class="fc-quickstart__step">
+            <span class="fc-quickstart__step-num" aria-hidden="true">1</span>
+            <p class="fc-quickstart__step-text">
+              <strong>Leia o PARTICIPANTE.md</strong>
+              Visão geral do workshop e dos 8 pilares, com instruções passo a passo.
+            </p>
+          </li>
+          <li class="fc-quickstart__step">
+            <span class="fc-quickstart__step-num" aria-hidden="true">2</span>
+            <p class="fc-quickstart__step-text">
+              <strong>Abra o index.html localmente</strong>
+              Use Live Server no VS Code e veja a página base da academia.
+            </p>
+          </li>
+          <li class="fc-quickstart__step">
+            <span class="fc-quickstart__step-num" aria-hidden="true">3</span>
+            <p class="fc-quickstart__step-text">
+              <strong>Inspecione .github/</strong>
+              Explore instructions, skills, agents e hooks — leia cada arquivo antes de usar.
+            </p>
+          </li>
+          <li class="fc-quickstart__step">
+            <span class="fc-quickstart__step-num" aria-hidden="true">4</span>
+            <p class="fc-quickstart__step-text">
+              <strong>Teste @qa-academia</strong>
+              No Copilot Chat, invoque o agente para revisar qualquer arquivo HTML do projeto.
+            </p>
+          </li>
+          <li class="fc-quickstart__step">
+            <span class="fc-quickstart__step-num" aria-hidden="true">5</span>
+            <p class="fc-quickstart__step-text">
+              <strong>Rode gerar_evidencia.py</strong>
+              Valida todos os pilares e gera o HTML de evidência com seu nome e turma.
+            </p>
+          </li>
+          <li class="fc-quickstart__step">
+            <span class="fc-quickstart__step-num" aria-hidden="true">6</span>
+            <p class="fc-quickstart__step-text">
+              <strong>Teste o CLI</strong>
+              Execute <code>gh copilot suggest</code> e <code>gh copilot explain</code> no terminal.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─── Footer ──────────────────────────────────────────────────────── -->
+  <footer class="fc-footer" role="contentinfo">
+    <p>
+      Academia FitCode · Intranet de Governança ·
+      <a href="../index.html">Ver site da academia</a> ·
+      <a href="../PARTICIPANTE.md">PARTICIPANTE.md</a>
+    </p>
+  </footer>
+
+  <script defer>
+    document.querySelectorAll('.fc-pilar__toggle').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var expanded = this.getAttribute('aria-expanded') === 'true';
+        var targetId = this.getAttribute('aria-controls');
+        var panel = document.getElementById(targetId);
+
+        this.setAttribute('aria-expanded', String(!expanded));
+        panel.classList.toggle('is-open', !expanded);
+      });
+    });
+  </script>
+
+</body>
+</html>

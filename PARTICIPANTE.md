@@ -57,10 +57,10 @@ Ou, no VS Code, clique com o botão direito em `index.html` e escolha **Open wit
 
 ---
 
-## Os 8 Pilares — configure um a um
+## Os 8 Pilares — Iremos configurar um a um
 
-Os arquivos de governança **já estão configurados** em `.github/`.
-**Explore cada um** para entender o que fazem — esse é o exercício.
+<!-- Os arquivos de governança **já estão configurados** em `.github/`.
+**Explore cada um** para entender o que fazem — esse é o exercício. -->
 
 ---
 

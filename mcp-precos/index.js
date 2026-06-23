@@ -127,15 +127,21 @@ process.stdin.on('end', () => {
 
 function processMessages() {
   while (true) {
-    const headerEnd = inputBuffer.indexOf('\r\n\r\n');
+    // Suporta tanto \r\n\r\n (Windows) quanto \n\n (Unix/VS Code pipe)
+    let headerEnd = inputBuffer.indexOf('\r\n\r\n');
+    let sepLen = 4;
+    if (headerEnd === -1) {
+      headerEnd = inputBuffer.indexOf('\n\n');
+      sepLen = 2;
+    }
     if (headerEnd === -1) break;
 
     const headers = inputBuffer.slice(0, headerEnd).toString();
     const match = headers.match(/Content-Length:\s*(\d+)/i);
-    if (!match) { inputBuffer = inputBuffer.slice(headerEnd + 4); continue; }
+    if (!match) { inputBuffer = inputBuffer.slice(headerEnd + sepLen); continue; }
 
     const contentLength = parseInt(match[1], 10);
-    const bodyStart = headerEnd + 4;
+    const bodyStart = headerEnd + sepLen;
 
     if (inputBuffer.length < bodyStart + contentLength) break;
 
@@ -152,7 +158,8 @@ function processMessages() {
 
 function send(msg) {
   const json = JSON.stringify(msg);
-  const header = `Content-Length: ${Buffer.byteLength(json, 'utf8')}\r\n\r\n`;
+  const len  = Buffer.byteLength(json, 'utf8');
+  const header = `Content-Length: ${len}\r\nContent-Type: application/json; charset=utf-8\r\n\r\n`;
   process.stdout.write(Buffer.from(header, 'utf8'));
   process.stdout.write(Buffer.from(json, 'utf8'));
 }
@@ -174,7 +181,14 @@ function handleMessage(msg) {
     });
   }
 
-  if (method === 'notifications/initialized') return; // notification, no response
+  // Notificação de inicialização — sem prefixo (clientes antigos) ou com prefixo
+  if (method === 'notifications/initialized' || method === 'initialized') return;
+
+  // Ping de keep-alive — VS Code usa para checar se o servidor está vivo
+  if (method === 'ping') {
+    if (id !== undefined) send({ jsonrpc: '2.0', id, result: {} });
+    return;
+  }
 
   if (method === 'tools/list') {
     return send({
